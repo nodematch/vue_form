@@ -106,7 +106,7 @@ export default defineComponent({
   setup(prop, context) {
     const onclick = () => {
       isDone.value = true;
-      console.log(countAll());
+      countAll();
     };
     const checkAge = (ev: any) => {
       const num = ev.target.value;
@@ -125,7 +125,7 @@ export default defineComponent({
     const sex = ref(0);
     const height = ref(160);
     const weight = ref(50);
-    const resultMsg = "result message here";
+    const resultMsg = ref("result message here");
     const isDone = ref(false);
     const showNumber = ref(1);
     class Ill {
@@ -193,7 +193,17 @@ export default defineComponent({
         }
       }
       //Result
-      return sum;
+      if (
+        (showNumber.value == 0 && sum > 5) ||
+        (showNumber.value == 1 && sum > 4) ||
+        (showNumber.value == 2 && sum > 2)
+      ) {
+        resultMsg.value = "Let us know more information : score = " + sum;
+      } else {
+        resultMsg.value = "Thank you for Cooperation : score = " + sum;
+      }
+      console.log(sum);
+      alert(resultMsg.value);
     };
     return {
       onclick,
