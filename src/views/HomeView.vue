@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HelloWorld msg="Title Here" />
+    <HelloWorld msg="重症化予測スコア 入力フォーム" />
   </div>
   <div>
     <score-form />

@@ -20,6 +20,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/calendar",
     component: () => import("../views/CalendarView.vue"),
   },
+  {
+    path: "/print",
+    name: "print",
+    props: true,
+    component: () => import("../views/PrintView.vue"),
+  },
 ];
 
 const router = createRouter({

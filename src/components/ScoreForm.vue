@@ -8,7 +8,7 @@
             type="number"
             maxlength="3"
             v-model.number="age"
-            @change="checkAge"
+            @change="setAge"
             max="150"
             min="18"
           />
@@ -22,7 +22,8 @@
             name="sex"
             id="female"
             value="0"
-            v-model.number="sex"
+            v-model="sex"
+            max="100"
           />
           <label for="female">女性</label>
           &nbsp;&nbsp;
@@ -31,7 +32,8 @@
             name="sex"
             id="male"
             value="1"
-            v-model.number="sex"
+            v-model="sex"
+            max="100"
           />
           <label for="male">男性</label>
         </td>
@@ -45,6 +47,7 @@
             v-model.number="height"
             max="299"
             min="0"
+            @change="setBMIs"
           />
         </td>
       </tr>
@@ -57,157 +60,165 @@
             v-model.number="weight"
             max="199"
             min="0"
+            @change="setBMIs"
           />
         </td>
       </tr>
-      <tr v-for="ill in ills" :key="ill.name" class="two">
-        <th v-if="ill.isShow()">
+      <tr class="one">
+        <th>BMI</th>
+        <td>{{ bmi() }}</td>
+      </tr>
+      <tr v-for="(ill, idx) in ills" :key="ill.name" class="two">
+        <th v-if="ill.isShow(ageType)">
           {{ ill.name }}
         </th>
-        <td v-if="ill.isShow()">
+        <td v-if="ill.isShow(ageType)">
           <input
             type="radio"
-            :name="ill.id"
+            :name="ill.name"
             value="1"
-            :id="'y' + ill.id"
-            v-model.number="ill.val"
+            :id="'y' + ill.name"
+            v-model.number="illVal[idx]"
           />
-          <label :for="'y' + ill.id">あり</label>
+          <label :for="'y' + ill.name">あり</label>
           &nbsp;&nbsp;
           <input
             type="radio"
-            :name="ill.id"
+            :name="ill.name"
             value="0"
-            :id="'n' + ill.id"
-            v-model.number="ill.val"
+            :id="'n' + ill.name"
+            v-model.number="illVal[idx]"
           />
-          <label :for="'n' + ill.id">なし</label>
+          <label :for="'n' + ill.name">なし</label>
         </td>
       </tr>
     </table>
+    <table>
+      <tr>
+        <td class="w40"></td>
+        <td class="w90">
+          <button class="doneBtn" @click="onclick">完了</button>
+        </td>
+        <td class="w40"></td>
+      </tr>
+    </table>
 
-    <div>
-      <button class="doneBtn" @click="onclick">Done</button>
-    </div>
     <div v-if="isDone">
       <h2>{{ resultMsg }}</h2>
+      <button @click="clickPrint">Print</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { personData } from "@/store/ill.model";
+import { ills } from "@/store/ill.data";
+import errCheck from "@/store/errCheck";
+import router from "@/router/index";
 
 export default defineComponent({
   name: "ScoreForm",
-  props: {
-    msg: String,
-  },
-  setup(prop, context) {
-    const onclick = () => {
-      isDone.value = true;
-      countAll();
+  setup(props, context) {
+    let pd = new personData({ age: 18, sex: 0, height: 160, weight: 50 }, ills);
+    const age = ref(0);
+    const sex = ref(pd.sex);
+    const height = ref(0);
+    const weight = ref(0);
+    const illVal = ref(pd.illValue);
+    const ageType = ref(pd.ageType);
+    const bmi = () => {
+      return Math.floor(pd.bmi * 10) / 10;
     };
-    const checkAge = (ev: any) => {
-      const num = ev.target.value;
-      if (num > 17 && num < 40) {
-        showNumber.value = 0;
-      } else if (num > 39 && num < 65) {
-        showNumber.value = 1;
-      } else if (num > 64) {
-        showNumber.value = 2;
-      } else {
-        console.log("err : num = " + num);
-      }
-      console.log("showNumber = " + showNumber.value);
+    const setAge = () => {
+      pd.age = age.value;
+      pd.setAgeType();
+      ageType.value = pd.ageType;
     };
-    const age = ref(18);
-    const sex = ref(0);
-    const height = ref(160);
-    const weight = ref(50);
+    const setBMIs = () => {
+      pd.weight = weight.value;
+      pd.height = height.value;
+      pd.setBMI();
+    };
+    const setOtherInf = () => {
+      pd.sex = sex.value;
+      pd.illValue = illVal.value;
+    };
     const resultMsg = ref("result message here");
     const isDone = ref(false);
-    const showNumber = ref(1);
-    class Ill {
-      constructor(name: string, id: number, points: Array<number>) {
-        this.name = name;
-        this.id = id;
-        this.points = points;
-      }
-      name = "";
-      id = 0;
-      val = 0;
-      points: Array<number> = [];
-      isShow() {
-        return this.points[showNumber.value] != 0;
-      }
-      getpoint() {
-        return this.points[showNumber.value];
-      }
-    }
-    const ills = ref<Array<Ill>>([
-      new Ill("うっ血性心不全", 0, [0, 0, 2]),
-      new Ill("脳血管疾患", 1, [0, 0, 1]),
-      new Ill("糖尿病", 2, [0, 1, 2]),
-      new Ill("高血圧", 3, [0, 0, 2]),
-      new Ill("悪性疾患", 4, [3, 0, 0]),
-      new Ill("発熱", 5, [2, 2, 4]),
-      new Ill("咳", 6, [0, 1, 1]),
-      new Ill("呼吸困難", 7, [1, 2, 4]),
-      new Ill("喘鳴", 8, [1, 0, 0]),
-      new Ill("倦怠感", 9, [0, 1, 0]),
-    ]);
-    const countAll = () => {
-      var sum = 0;
-      //ills
-      ills.value.forEach((element) => {
-        sum += element.getpoint() * element.val;
-      });
-      //sex
-      if (sex.value == 1 && age.value < 65) {
-        sum += 1;
-      }
-      //age
-      if (
-        (age.value > 29 && age.value < 40) ||
-        (age.value > 49 && age.value < 60)
-      ) {
-        sum += 1;
-      } else if (age.value > 59 && age.value < 65) {
-        sum += 3;
-      } else if (age.value > 74) {
-        sum += 2;
-      }
-      //weight, height
-      var bmi: number = weight.value / (height.value / 100) ** 2;
-      console.log("BMI = " + bmi);
-      if (age.value < 40) {
-        if (bmi > 30) {
-          sum += 2;
-        } else if (bmi > 23) {
-          sum += 1;
-        }
+    const onclick = () => {
+      let chk = errCheck.numbers([
+        { n: age.value, min: 18, max: 150, name: "age" },
+        { n: height.value, min: 1, max: 250, name: "height" },
+        { n: weight.value, min: 1, max: 199, name: "weight" },
+      ]);
+      if (!chk.valid) {
+        resultMsg.value = chk.msg;
+        alert(resultMsg.value);
       } else {
-        if (bmi > 25) {
-          sum += 2;
+        setAge();
+        setBMIs();
+        setOtherInf();
+        pd.calcPoint(ills);
+        console.log(pd.score);
+        var result;
+        if (!pd.judge()) {
+          resultMsg.value = "低いスコア : 次の入力フォームへ進んで下さい";
+          result = window.confirm(resultMsg.value);
+          if (result) {
+            console.log("Y");
+            window.location.href = "https://www.google.com";
+          } else {
+            console.log("N");
+          }
+        } else {
+          resultMsg.value =
+            "高いスコア : 表示されるページの印刷、およびFaxをお願いします";
+          result = window.confirm(resultMsg.value);
+          if (result) {
+            console.log("Y");
+            clickPrint();
+          } else {
+            console.log("N");
+          }
         }
       }
-      //Result
-      if (
-        (showNumber.value == 0 && sum > 5) ||
-        (showNumber.value == 1 && sum > 4) ||
-        (showNumber.value == 2 && sum > 2)
-      ) {
-        resultMsg.value = "Let us know more information : score = " + sum;
-      } else {
-        resultMsg.value = "Thank you for Cooperation : score = " + sum;
-      }
-      console.log(sum);
-      alert(resultMsg.value);
     };
+    const clickPrint = () => {
+      let sexStr: string = pd.sex == 1 ? "男" : "女";
+      let ills_: string[] = new Array<string>(illVal.value.length);
+      for (let i = 0; i < ills.length; i++) {
+        if (!ills[i].isShow(pd.ageType)) {
+          ills_[i] = "――";
+        } else if (illVal.value[i] == 1) {
+          ills_[i] = "&#9675";
+        } else {
+          ills_[i] = "";
+        }
+      }
+      let ageType_ = "18-39";
+      if (pd.ageType == 1) {
+        ageType_ = "40-64";
+      } else if (pd.ageType == 2) {
+        ageType_ = "65-";
+      }
+      router.push({
+        name: "print",
+        params: {
+          age: pd.age,
+          sex: sexStr,
+          ills: ills_,
+          bmi: Math.floor(pd.bmi * 10) / 10,
+          score: pd.score.toString(),
+          ageType: ageType_,
+        },
+      });
+    };
+
     return {
       onclick,
-      checkAge,
+      setAge,
+      setBMIs,
       age,
       sex,
       height,
@@ -215,7 +226,10 @@ export default defineComponent({
       resultMsg,
       isDone,
       ills,
-      showNumber,
+      ageType,
+      illVal,
+      bmi,
+      clickPrint,
     };
   },
 });
@@ -239,14 +253,14 @@ td,
 th {
   border-width: 0px 0px;
   border-style: solid;
-  padding: 8px 6px;
-  height: 45px;
+  padding: 0.3em 0.2em;
+  height: 2em;
 }
 td {
-  width: 250px;
+  width: 15em;
 }
 th {
-  width: 150px;
+  width: 10em;
 }
 tr.one {
   background-color: rgb(235, 235, 235);
@@ -256,20 +270,13 @@ tr.two {
 }
 .doneBtn {
   padding: auto;
-  margin: 20px 200px;
-  width: 160px;
-  height: 40px;
+  margin: auto;
+  width: 4em;
+  height: 1.5em;
   font-size: 1.5em;
+  text-align: center;
 }
 input {
   font-size: 1.2em;
 }
-/* td:nth-child(odd),
-th:nth-child(odd) {
-  background-color: aqua;
-}
-td:nth-child(even),
-th:nth-child(even) {
-  background-color: cadetblue;
-} */
 </style>

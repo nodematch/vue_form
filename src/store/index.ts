@@ -25,3 +25,5 @@ export const store = createStore<State>({
     },
   },
 });
+
+export const ills = createStore;
