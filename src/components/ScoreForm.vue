@@ -1,111 +1,108 @@
 <template>
-  <div>
-    <table border="1">
-      <tr class="one">
-        <th>年齢</th>
-        <td>
-          <input
-            type="number"
-            maxlength="3"
-            v-model.number="age"
-            @change="setAge"
-            max="150"
-            min="18"
-          />
-        </td>
-      </tr>
-      <tr class="one">
-        <th>性別</th>
-        <td>
-          <input
-            type="radio"
-            name="sex"
-            id="female"
-            value="0"
-            v-model="sex"
-            max="100"
-          />
-          <label for="female">女性</label>
-          &nbsp;&nbsp;
-          <input
-            type="radio"
-            name="sex"
-            id="male"
-            value="1"
-            v-model="sex"
-            max="100"
-          />
-          <label for="male">男性</label>
-        </td>
-      </tr>
-      <tr class="one">
-        <th>身長</th>
-        <td>
-          <input
-            type="number"
-            maxlength="3"
-            v-model.number="height"
-            max="299"
-            min="0"
-            @change="setBMIs"
-          />
-        </td>
-      </tr>
-      <tr class="one">
-        <th>体重</th>
-        <td>
-          <input
-            type="number"
-            maxlength="3"
-            v-model.number="weight"
-            max="199"
-            min="0"
-            @change="setBMIs"
-          />
-        </td>
-      </tr>
-      <tr class="one">
-        <th>BMI</th>
-        <td>{{ bmi() }}</td>
-      </tr>
-      <tr v-for="(ill, idx) in ills" :key="ill.name" class="two">
-        <th v-if="ill.isShow(ageType)">
-          {{ ill.name }}
-        </th>
-        <td v-if="ill.isShow(ageType)">
+  <div class="container">
+    <div class="text-center mb-3 fontL">入力フォーム</div>
+    <div class="form-group color_1">
+      <div class="form-inline">
+        <label for="age" class="col-6">年齢</label>
+        <input
+          type="number"
+          maxlength="3"
+          v-model.number="age"
+          @change="setAge"
+          max="150"
+          min="18"
+          class="form-control col-6"
+        />
+      </div>
+    </div>
+    <div class="form-group color_1">
+      <div class="form-inline">
+        <label class="col-6">性別</label>
+        <input
+          type="radio"
+          name="sex"
+          id="female"
+          value="0"
+          v-model="sex"
+          class="form-check col-1"
+        />
+        <label for="female" class="form-check-label col-2">女</label>
+        <input
+          type="radio"
+          name="sex"
+          id="male"
+          value="1"
+          v-model="sex"
+          class="form-check col-1"
+        />
+        <label for="male" class="form-check-label col-2">男</label>
+      </div>
+    </div>
+    <div class="form-group color_1">
+      <div class="form-inline">
+        <label for="age" class="col-6">身長</label>
+        <input
+          type="number"
+          maxlength="3"
+          v-model.number="height"
+          max="299"
+          min="0"
+          @change="setBMIs"
+          class="form-control col-6"
+        />
+      </div>
+    </div>
+    <div class="form-group color_1">
+      <div class="form-inline">
+        <label for="age" class="col-6">体重</label>
+        <input
+          type="number"
+          maxlength="3"
+          v-model.number="weight"
+          max="199"
+          min="0"
+          @change="setBMIs"
+          class="form-control col-6"
+        />
+      </div>
+    </div>
+    <!-- <div class="form-group color_1">
+      <div class="form-inline">
+        <label for="age" class="col-6">BMI</label>
+        <div class="col-6">{{ bmi() }}</div>
+      </div>
+    </div> -->
+    <div v-for="(ill, idx) in ills" :key="ill.name" class="color_2">
+      <div class="form-group" v-if="ill.isShow(ageType)">
+        <div class="form-inline">
+          <label class="col-6">{{ ill.name }}</label>
           <input
             type="radio"
             :name="ill.name"
             value="1"
             :id="'y' + ill.name"
             v-model.number="illVal[idx]"
+            class="form-check col-1"
           />
-          <label :for="'y' + ill.name">あり</label>
-          &nbsp;&nbsp;
+          <label :for="'y' + ill.name" class="form-check-label col-2">
+            有
+          </label>
           <input
             type="radio"
             :name="ill.name"
             value="0"
             :id="'n' + ill.name"
             v-model.number="illVal[idx]"
+            class="form-check col-1"
           />
-          <label :for="'n' + ill.name">なし</label>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td class="w40"></td>
-        <td class="w90">
-          <button class="doneBtn" @click="onclick">完了</button>
-        </td>
-        <td class="w40"></td>
-      </tr>
-    </table>
-
-    <div v-if="isDone">
-      <h2>{{ resultMsg }}</h2>
-      <button @click="clickPrint">Print</button>
+          <label :for="'n' + ill.name" class="form-check-label col-2">
+            無
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary" @click="onclick">完了</button>
     </div>
   </div>
 </template>
@@ -119,7 +116,7 @@ import router from "@/router/index";
 
 export default defineComponent({
   name: "ScoreForm",
-  setup(props, context) {
+  setup() {
     let pd = new personData({ age: 18, sex: 0, height: 160, weight: 50 }, ills);
     const age = ref(0);
     const sex = ref(pd.sex);
@@ -160,7 +157,7 @@ export default defineComponent({
         setBMIs();
         setOtherInf();
         pd.calcPoint(ills);
-        console.log(pd.score);
+        console.log("bmi = " + pd.bmi + " ,score = " + pd.score);
         var result;
         if (!pd.judge()) {
           resultMsg.value = "低いスコア : 次の入力フォームへ進んで下さい";
@@ -236,47 +233,29 @@ export default defineComponent({
 </script>
 
 <style scoped>
-table {
+@import "@/bootstrap.css";
+
+/* table {
   display: block;
-  max-width: 400px;
+  max-width: 16em;
   margin: auto;
   border-collapse: collapse;
-  border-spacing: 150px 50px;
+  border-spacing: 1em 1em;
   font-size: 1.5em;
-}
-h2 {
-  margin: auto;
-  margin-top: 30px;
-  font-size: 1em;
-}
-td,
-th {
-  border-width: 0px 0px;
-  border-style: solid;
-  padding: 0.3em 0.2em;
-  height: 2em;
-}
-td {
-  width: 15em;
-}
-th {
-  width: 10em;
-}
-tr.one {
+} */
+.color_1 {
   background-color: rgb(235, 235, 235);
 }
-tr.two {
+.color_2 {
   background-color: lightcyan;
 }
-.doneBtn {
-  padding: auto;
-  margin: auto;
-  width: 4em;
-  height: 1.5em;
-  font-size: 1.5em;
-  text-align: center;
-}
 input {
-  font-size: 1.2em;
+  font-size: 1em;
+}
+label {
+  font-size: 1em;
+}
+.fontL {
+  font-size: 1.4em;
 }
 </style>

@@ -11,7 +11,7 @@
     <div class="f_M Left h_M">
       酸素需要予測スコアに基づき、下記患者の治療をご検討ください。
     </div>
-    <div class="h_M"></div>
+    <div class="h_L"></div>
 
     <table class="wide">
       <tr class="h_S">
@@ -43,10 +43,10 @@
         <td rowspan="2">
           <table class="v2">
             <tr>
-              <td>TEL</td>
+              <td>TEL&nbsp;:&nbsp;</td>
             </tr>
             <tr>
-              <td>FAX</td>
+              <td>FAX&nbsp;:&nbsp;</td>
             </tr>
           </table>
         </td>
@@ -70,9 +70,9 @@
           <table class="w20">
             <tr>
               <td>年齢</td>
-              <td class="f_L">{{ age }}</td>
+              <td>{{ age }}</td>
               <td>性別</td>
-              <td class="f_L">{{ sex }}</td>
+              <td>{{ sex }}</td>
             </tr>
           </table>
         </td>
@@ -84,8 +84,8 @@
         <td colspan="2">住所</td>
       </tr>
       <tr>
-        <td>携帯電話</td>
-        <td>自宅電話</td>
+        <td>携帯電話 :</td>
+        <td>自宅電話 :</td>
       </tr>
     </table>
     <!-- INPUT_3 -->
@@ -95,19 +95,23 @@
         <td>コロナ診断日</td>
       </tr>
       <tr>
-        <td>SpO2&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;測定日</td>
+        <td>
+          SpO2&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（測定日 :
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
+        </td>
         <td>妊娠&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;有&emsp;・&emsp;無</td>
       </tr>
       <tr>
         <td>コロナワクチン接種回数</td>
-        <td>
-          以前のコロナ感染歴&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;年&emsp;&emsp;&emsp;&emsp;月
-        </td>
+        <td>最後の接種日</td>
       </tr>
       <tr>
-        <td>最後の接種日</td>
         <td>
-          eGFR&emsp;&emsp;&emsp;&emsp;血清Cr&emsp;&emsp;&emsp;&emsp;検査日
+          （以前のコロナ感染歴&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;年&emsp;&emsp;&emsp;&emsp;月）
+        </td>
+        <td>
+          （eGFR :&emsp;&emsp;&emsp;&emsp;血清Cr :&emsp;&emsp;&emsp;&emsp;
+          検査日 :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
         </td>
       </tr>
     </table>
@@ -142,79 +146,64 @@
               <td></td>
             </tr>
           </table>
-          <!-- Input_3.2 -->
-          <div class="h_S Center">備考 : その他リスク因子等</div>
-          <table class="half thick">
-            <tr class="textArea">
-              <td class="w80 line"></td>
+          <div class="h_S"></div>
+          <div class="h_S Center">該当する重症化リスク</div>
+          <table class="half normal Middle" border="1">
+            <tr>
+              <td class="Center">りすく名</td>
             </tr>
           </table>
         </td>
         <td>
           <!-- Input_3.3 -->
-          <div class="h_S Center">重症化予測スコア（COVIREGI-JPの解析）</div>
-          <table class="half normal _4-4 Middle" border="1">
+          <div class="h_S Center">重症化リスク一覧</div>
+          <table class="half normal Small" border="1">
             <tr>
-              <td class="Center">年代&emsp;(カットオフ値)</td>
-              <td class="Center">スコア</td>
+              <td>A</td>
             </tr>
             <tr>
-              <td class="Center">{{ ageType }}&emsp;&emsp;(99)</td>
-              <td class="Center f_L">{{ score }}</td>
-              <!-- <td class="Center">{{ score }}</td> -->
-            </tr>
-          </table>
-          <!-- Input_3.4 -->
-          <div class="h_S Center">
-            スコア詳細（&#9675; : 症状あり、&emsp;― : 症状なし）
-          </div>
-          <table class="half normal _3-1-3-1 Middle" border="1">
-            <tr>
-              <td>BMI</td>
-              <td class="Center f_L">{{ bmi }}</td>
-              <td>うっ血性心不全</td>
-              <td class="Center f_L" v-html="ills[0]"></td>
+              <td>A</td>
             </tr>
             <tr>
-              <td>脳血管疾患</td>
-              <td class="Center f_L" v-html="ills[1]"></td>
-              <td>糖尿病</td>
-              <td class="Center f_L" v-html="ills[2]"></td>
+              <td>A</td>
             </tr>
             <tr>
-              <td>高血圧</td>
-              <td class="Center f_L" v-html="ills[3]"></td>
-              <td>悪性疾患</td>
-              <td class="Center f_L" v-html="ills[4]"></td>
+              <td>A</td>
             </tr>
             <tr>
-              <td>発熱</td>
-              <td class="Center f_L" v-html="ills[5]"></td>
-              <td>咳</td>
-              <td class="Center f_L" v-html="ills[6]"></td>
+              <td>A</td>
             </tr>
             <tr>
-              <td>呼吸困難</td>
-              <td class="Center f_L" v-html="ills[7]"></td>
-              <td>喘鳴</td>
-              <td class="Center f_L" v-html="ills[8]"></td>
+              <td>A</td>
             </tr>
             <tr>
-              <td>倦怠感</td>
-              <td class="Center f_L" v-html="ills[9]"></td>
-              <td></td>
-              <td></td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>A</td>
             </tr>
           </table>
-          <!-- <div class="Left-Left">
-            Yamada G,et al.Predicting respriatory failure for COVID-19
-          </div>
-          <div class="Left-Left">
-            patients in Japan: a simple clinical score for evaluating the
-          </div>
-          <div class="Left-Left">
-            need for hospitalization. Epidemiol Infect 2021
-          </div> -->
         </td>
       </tr>
     </table>
@@ -250,7 +239,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "PrintComponent",
+  name: "PrintComponentv2",
   props: {
     age: {
       type: Number,
@@ -274,7 +263,7 @@ export default defineComponent({
     },
     ills: {
       type: Array,
-      default: new Array<string>("&#9675", "―", "", "", "", "", "", "", "", ""),
+      default: new Array<string>("", "", "", "", "", "", "", "", "", ""),
     },
   },
 });
@@ -283,29 +272,26 @@ export default defineComponent({
 <style scoped>
 @page {
   size: A4 portrait;
-  margin: 0mm;
+  margin: 0px;
 }
 * {
-  margin: 0mm;
-  padding: 0mm;
+  margin: 0px;
+  padding: 0px;
   border-collapse: collapse;
   border-color: black;
 }
+body {
+  width: 210mm;
+}
 .page {
-  margin: 0mm auto;
+  margin: 0 auto;
   page-break-after: avoid;
   box-sizing: border-box;
-  padding: 10mm;
-  font-size: 13px;
+  padding: 20mm 20mm;
+  font-size: 11px;
   background-color: white;
   position: relative;
   width: 210mm;
-  height: 297mm;
-}
-body {
-  width: 190mm;
-  height: 297mm;
-  transform-origin: 0mm;
 }
 table.thick {
   border: 1mm solid;
@@ -314,32 +300,32 @@ table.normal {
   border: 0.5mm solid;
 }
 table.half {
-  width: 90mm;
+  width: 80mm;
   margin: 1.5mm auto;
   padding: 0mm;
 }
 table.wide {
-  width: 190mm;
+  width: 170mm;
   margin: 2mm 0mm;
   padding: 0mm;
 }
 table._4-4 td {
-  width: 45mm;
+  width: 40mm;
 }
 table._3-1-3-1 td:nth-child(odd) {
-  width: 35mm;
+  width: 30mm;
 }
 table._3-1-3-1 td:nth-child(even) {
   width: 10mm;
 }
 table._7-1 td:nth-child(odd) {
-  width: 75mm;
+  width: 70mm;
 }
 table._7-1 td:nth-child(even) {
   width: 10mm;
 }
 table._7-3-7 td:nth-child(odd) {
-  width: 80mm;
+  width: 70mm;
 }
 table._7-3-7 td:nth-child(even) {
   width: 30mm;
@@ -352,26 +338,32 @@ td {
   text-indent: 1.5mm;
 }
 table.Large tr {
-  height: 12mm;
+  height: 10mm;
 }
 table.Middle tr {
-  height: 9mm;
+  height: 8mm;
+}
+table.Small tr {
+  height: 5mm;
+}
+table.Small td {
+  font-size: 9px;
 }
 table.wide td {
-  width: 95mm;
+  width: 85mm;
 }
 table.v2 tr {
-  height: 9mm;
+  height: 8mm;
 }
 table.w20 td {
   width: 20mm;
 }
 /* Height */
 .h_L {
-  height: 11mm !important;
+  height: 10mm !important;
 }
 .h_M {
-  height: 9mm !important;
+  height: 8mm !important;
 }
 .h_S {
   height: 5mm !important;
@@ -393,13 +385,13 @@ table.w20 td {
 }
 /* Font-Size */
 .f_L {
-  font-size: 18px;
+  font-size: 16px;
 }
 .f_M {
-  font-size: 13px;
+  font-size: 12px;
 }
 .f_S {
-  font-size: 10px;
+  font-size: 8px;
 }
 .f_Title {
   font-size: 20px;

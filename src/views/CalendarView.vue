@@ -25,7 +25,7 @@ export default defineComponent({
       var file = event.target.files[0];
       var reader = new FileReader();
       reader.readAsText(file, "utf-8");
-      reader.onload = function (ev: ProgressEvent<FileReader>) {
+      reader.onload = function () {
         console.log(reader.result);
       };
       console.log(event);
