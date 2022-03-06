@@ -16,10 +16,12 @@ export default defineComponent({
 
 <style>
 /* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #555d64;
+  padding: 0mm;
+  margin: 0mm;
 } */
+@page {
+  size: A4 portrait;
+  margin: 0mm;
+  padding: 0mm;
+}
 </style>

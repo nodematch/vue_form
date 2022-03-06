@@ -26,6 +26,18 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
     component: () => import("../views/PrintView_v2.vue"),
   },
+  {
+    path: "/titleInf",
+    name: "titleInf",
+    props: false,
+    component: () => import("../views/TitleInf.vue"),
+  },
+  {
+    path: "/titleInfv2",
+    name: "titleInfv2",
+    props: false,
+    component: () => import("../views/TitleInf_v2.vue"),
+  },
 ];
 
 const router = createRouter({

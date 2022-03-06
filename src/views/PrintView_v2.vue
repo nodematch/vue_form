@@ -1,22 +1,18 @@
 <template>
   <div class="page">
     <!-- Head -->
-    <div class="h_L f_Title Left">
-      宛先&nbsp;:&nbsp;あま市民病院院長&emsp;&emsp;梅屋&emsp;崇
+    <div class="tall fontTitle Left">
+      宛先 :&emsp;&emsp;あま市民病院院長&emsp;&emsp;梅屋&emsp;崇
     </div>
-    <div class="h_M f_M Right">
-      FAX: 052-462-0655&nbsp;（受付時間&nbsp;:&nbsp;平日８時半～１７時）
+    <div class="middle fontL Right">FAX: 052-462-0655 （受付時間 : 終日）</div>
+    <div class="fontL Left tall">
+      初期治療選択フローに基づき、下記患者の治療をご検討ください。
     </div>
-    <div class="h_S"></div>
-    <div class="f_M Left h_M">
-      酸素需要予測スコアに基づき、下記患者の治療をご検討ください。
-    </div>
-    <div class="h_L"></div>
 
     <table class="wide">
-      <tr class="h_S">
+      <tr class="Small">
         <td class="Right">
-          <b class="f_L">太字枠を記入</b>
+          <b class="fontL">太字枠を記入</b>
         </td>
         <td class="Right">
           <b>年&emsp;&emsp;&emsp;&emsp;月&emsp;&emsp;&emsp;&emsp;日</b>
@@ -24,16 +20,12 @@
       </tr>
     </table>
     <!-- INPUT_1 -->
-    <table class="thick wide Large" border="1">
-      <tr>
-        <td>医療機関名称</td>
-        <td>担当医師名</td>
-      </tr>
-      <tr class="h_M">
+    <table class="thick wide tall" border="1">
+      <tr class="middle">
         <td rowspan="2">
-          <table class="v2">
+          <table class="middle">
             <tr>
-              <td>所在地</td>
+              <td>医療機関名称</td>
             </tr>
             <tr>
               <td></td>
@@ -41,23 +33,27 @@
           </table>
         </td>
         <td rowspan="2">
-          <table class="v2">
+          <table class="middle">
             <tr>
-              <td>TEL&nbsp;:&nbsp;</td>
+              <td>TEL</td>
             </tr>
             <tr>
-              <td>FAX&nbsp;:&nbsp;</td>
+              <td>FAX</td>
             </tr>
           </table>
         </td>
       </tr>
-      <tr class="h_M"></tr>
+      <tr class="middle"></tr>
+      <tr>
+        <td>担当医師名</td>
+        <td>所在地</td>
+      </tr>
     </table>
     <!-- INPUT_2 -->
-    <table class="thick wide Large" border="1">
-      <tr class="h_M">
+    <table class="thick wide tall" border="1">
+      <tr class="middle">
         <td rowspan="2">
-          <table class="v2">
+          <table class="middle">
             <tr>
               <td>（フリガナ）</td>
             </tr>
@@ -67,51 +63,47 @@
           </table>
         </td>
         <td>
-          <table class="w20">
+          <table class="_2">
             <tr>
               <td>年齢</td>
-              <td>{{ age }}</td>
+              <td class="fontL">{{ age }}</td>
               <td>性別</td>
-              <td>{{ sex }}</td>
+              <td class="fontL">{{ sex }}</td>
             </tr>
           </table>
         </td>
       </tr>
-      <tr class="h_M">
+      <tr class="middle">
         <td>生年月日</td>
       </tr>
       <tr>
         <td colspan="2">住所</td>
       </tr>
       <tr>
-        <td>携帯電話 :</td>
-        <td>自宅電話 :</td>
+        <td>携帯電話</td>
+        <td>自宅電話</td>
       </tr>
     </table>
     <!-- INPUT_3 -->
-    <table class="thick wide Large" border="1">
+    <table class="thick wide tall" border="1">
       <tr>
         <td>コロナ発症日</td>
         <td>コロナ診断日</td>
       </tr>
       <tr>
-        <td>
-          SpO2&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（測定日 :
-          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
-        </td>
+        <td>SpO2&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;測定日</td>
         <td>妊娠&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;有&emsp;・&emsp;無</td>
       </tr>
       <tr>
         <td>コロナワクチン接種回数</td>
-        <td>最後の接種日</td>
+        <td>
+          以前のコロナ感染歴&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;年&emsp;&emsp;&emsp;&emsp;月
+        </td>
       </tr>
       <tr>
+        <td>最後の接種日</td>
         <td>
-          （以前のコロナ感染歴&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;年&emsp;&emsp;&emsp;&emsp;月）
-        </td>
-        <td>
-          （eGFR :&emsp;&emsp;&emsp;&emsp;血清Cr :&emsp;&emsp;&emsp;&emsp;
-          検査日 :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
+          eGFR&emsp;&emsp;&emsp;&emsp;血清Cr&emsp;&emsp;&emsp;&emsp;検査日
         </td>
       </tr>
     </table>
@@ -121,8 +113,8 @@
       <tr>
         <td>
           <!-- Input_3.1 -->
-          <div class="f_S Center">適応外項目がないか確認（レ点）</div>
-          <table class="half thick _7-1 Middle" border="1">
+          <div class="Small Center">適応外項目がないか確認（レ点）</div>
+          <table class="half thick _6-1 middle" border="1">
             <tr>
               <td>SARS-Co2感染を確認</td>
               <td></td>
@@ -136,7 +128,7 @@
               <td></td>
             </tr>
             <tr class="h10">
-              <td class="h_L">
+              <td class="tall">
                 ゼビュディ、パキロピッドパック、レムデジビルの成分に対して重い過敏症の既往がない
               </td>
               <td></td>
@@ -146,89 +138,60 @@
               <td></td>
             </tr>
           </table>
-          <div class="h_S"></div>
-          <div class="h_S Center">該当する重症化リスク</div>
-          <table class="half normal Middle" border="1">
+          <div class="Small Center">備考</div>
+          <table class="half normal middle _4-4" border="1">
             <tr>
-              <td class="Center">りすく名</td>
+              <td class="Center">スクリーニング推奨薬</td>
+              <td class="Center"></td>
+            </tr>
+            <tr>
+              <td class="Center">クリニック希望薬</td>
+              <td class="Center"></td>
             </tr>
           </table>
+          <div class="tall fontS Right">
+            パピロキット推奨の場合はお薬手帳を持参させて下さい&emsp;
+          </div>
+          <div class="middle Center">該当する重症化リスク（レ点）</div>
         </td>
         <td>
           <!-- Input_3.3 -->
-          <div class="h_S Center">重症化リスク一覧</div>
-          <table class="half normal Small" border="1">
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>A</td>
-            </tr>
+          <table class="half normal short _9-1" border="1">
+            <div v-for="item in risks" :key="item.name">
+              <tr>
+                <td class="fontS">{{ item.text }}</td>
+                <td></td>
+              </tr>
+            </div>
           </table>
         </td>
       </tr>
     </table>
-    <div class="h_L"></div>
-    <div class="h_S"></div>
+    <div class="Small"></div>
     <hr />
     <!-- Foot -->
-    <div class="h_M f_L Left">回答 :</div>
-    <table class="_7-3-7">
-      <tr class="h_L">
-        <td class="f_M">
-          1.受診予定（予約日&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
+    <table class="_2-7-2-7">
+      <tr class="tall">
+        <td>
+          <b class="fontL">回答</b>
         </td>
-        <td class="f_M">2.検討中</td>
-        <td class="f_M">
-          3.不可（理由&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
+        <td class="fontL">
+          1. 受診予定（予約日&emsp;&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
+        </td>
+        <td class="fontL">2. 検討中</td>
+        <td class="fontL">
+          3. 不可（理由&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
         </td>
       </tr>
     </table>
-    <div class="h_L Right f_M">
+    <div class="tall Right fontL">
       回答医師（&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
       &emsp;&emsp;&emsp;）&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
       年&emsp;&emsp;&emsp;&emsp;&emsp;月&emsp;&emsp;&emsp;&emsp;&emsp;日&emsp;
     </div>
-    <div class="h_M f_M Right">
+    <div class="middle fontL Right">
       今後ともよろしくお願い申し上げます。&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
       &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;あま市民病院
     </div>
@@ -237,13 +200,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { risks } from "@/store/questionnaire.model";
 
 export default defineComponent({
-  name: "PrintComponentv2",
+  name: "PrintView",
   props: {
     age: {
       type: Number,
-      default: 18,
+      default: 999,
     },
     sex: {
       type: String,
@@ -251,7 +215,7 @@ export default defineComponent({
     },
     score: {
       type: Number,
-      default: 6,
+      default: 99,
     },
     ageType: {
       type: String,
@@ -259,114 +223,142 @@ export default defineComponent({
     },
     bmi: {
       type: Number,
-      default: 22,
+      default: 99,
     },
     ills: {
       type: Array,
-      default: new Array<string>("", "", "", "", "", "", "", "", "", ""),
+      default: new Array<string>("&#9675", "―", "", "", "", "", "", "", "", ""),
     },
+    cutoff: {
+      type: Number,
+      default: 99,
+    },
+  },
+  setup() {
+    return {
+      risks,
+    };
   },
 });
 </script>
 
 <style scoped>
 @page {
-  size: A4 portrait;
-  margin: 0px;
+  size: 210mm 297mm portrait;
+  margin: 0mm;
+  overflow: visible;
 }
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0mm;
+  padding: 0mm;
   border-collapse: collapse;
   border-color: black;
 }
-body {
-  width: 210mm;
-}
+
 .page {
   margin: 0 auto;
+  padding: 0mm;
   page-break-after: avoid;
   box-sizing: border-box;
-  padding: 20mm 20mm;
-  font-size: 11px;
-  background-color: white;
-  position: relative;
+  /* ver,hor */
+  padding: 5mm 10mm;
+  font-size: 12px;
   width: 210mm;
+  height: 297mm;
+  background-color: cornsilk;
 }
+body {
+  width: 210mm;
+  height: 297mm;
+  padding: 0mm;
+  margin: 0mm;
+}
+html {
+  padding: 0mm;
+}
+/* table-line */
 table.thick {
   border: 1mm solid;
 }
 table.normal {
   border: 0.5mm solid;
 }
+/* table-size */
 table.half {
-  width: 80mm;
+  width: 90mm;
   margin: 1.5mm auto;
   padding: 0mm;
 }
 table.wide {
-  width: 170mm;
-  margin: 2mm 0mm;
+  width: 190mm;
+  margin: 2mm auto;
   padding: 0mm;
 }
+table.wide td {
+  width: 95mm;
+}
+/* td-width */
+table._2 td {
+  width: 20mm;
+}
 table._4-4 td {
-  width: 40mm;
+  width: 45mm;
 }
 table._3-1-3-1 td:nth-child(odd) {
-  width: 30mm;
+  width: 35mm;
 }
 table._3-1-3-1 td:nth-child(even) {
   width: 10mm;
 }
 table._7-1 td:nth-child(odd) {
-  width: 70mm;
+  width: 80mm;
 }
 table._7-1 td:nth-child(even) {
   width: 10mm;
 }
-table._7-3-7 td:nth-child(odd) {
-  width: 70mm;
+table._2-7-2-7 td:nth-child(odd) {
+  width: 20mm;
 }
-table._7-3-7 td:nth-child(even) {
-  width: 30mm;
+table._2-7-2-7 td:nth-child(even) {
+  width: 75mm;
 }
-.textArea {
-  height: 21mm !important;
+table._9-1 td:nth-child(odd) {
+  width: 90mm;
+}
+table._9-1 td:nth-child(even) {
+  width: 10mm;
+}
+table._6-1 td:nth-child(odd) {
+  width: 66mm;
+}
+table._6-1 td:nth-child(even) {
+  width: 14mm;
 }
 td {
   text-align: left;
   text-indent: 1.5mm;
 }
-table.Large tr {
+/* Height */
+table.tall tr {
   height: 10mm;
 }
-table.Middle tr {
+table.middle tr {
   height: 8mm;
 }
-table.Small tr {
+table.short tr {
   height: 5mm;
 }
-table.Small td {
-  font-size: 9px;
-}
-table.wide td {
-  width: 85mm;
-}
-table.v2 tr {
-  height: 8mm;
-}
-table.w20 td {
-  width: 20mm;
-}
-/* Height */
-.h_L {
+div.tall {
   height: 10mm !important;
 }
-.h_M {
+div.middle {
   height: 8mm !important;
 }
-.h_S {
+div.Small {
   height: 5mm !important;
+}
+.textArea {
+  height: 24mm !important;
 }
 /* Text-Align */
 .Left {
@@ -379,21 +371,17 @@ table.w20 td {
 .Right {
   text-align: right !important;
 }
-.Left-Left {
-  text-align: left;
-  text-indent: 5mm;
-}
 /* Font-Size */
-.f_L {
+.fontL {
   font-size: 16px;
 }
-.f_M {
+.fontL {
   font-size: 12px;
 }
-.f_S {
-  font-size: 8px;
+.fontS {
+  font-size: 10px;
 }
-.f_Title {
+.fontTitle {
   font-size: 20px;
 }
 </style>

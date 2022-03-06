@@ -2,32 +2,20 @@ export type Choice = {
   id: number;
   text: string;
 };
-export class Qs {
-  constructor(list: Array<Question>) {
-    this.list = list;
-  }
-  list: Array<Question> = [];
-  goNext(n: number): Question {
-    return this.list[n];
-  }
-}
-export class Question {
+
+export class SingleQ {
   constructor(
     message: string,
     list: Array<Choice>,
-    isMulti: boolean,
-    nextQID: (answer: Array<number>) => number
+    nextQID: (answer: number) => number
   ) {
     this.message = message;
     this.list = list;
-    this.isMulti = isMulti;
     this.nextQID = nextQID;
   }
   message = "";
   list: Array<Choice> = [];
-  answer: Array<number> = [];
-  isMulti = false;
-  nextQID(answer: Array<number>) {
+  nextQID(answer: number) {
     return 0;
   }
 }

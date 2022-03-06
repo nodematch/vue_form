@@ -1,25 +1,24 @@
 <template>
   <div class="container">
     <div class="text-center mb-3 fontL">入力フォーム</div>
+    <div class="text-left fs-4 p-3">{{ qs[index].message }}</div>
     <div class="form-group">
       <div
-        v-for="choice in questions.list"
-        :key="choice.name"
-        class="form-inline"
+        class="form-check p-1"
+        v-for="item in qs[index].list"
+        :key="item.name"
       >
         <input
           type="radio"
           name="risk"
-          :value="choice.id"
-          :id="choice.text"
-          v-model.number="riskNumber"
-          class="col-1"
+          :value="item.id"
+          :id="item.text"
+          v-model="a"
+          class="form-check-input fs-6"
         />
-        <div class="col-11">
-          <label :for="choice.text" class="float-left">
-            {{ choice.text }}
-          </label>
-        </div>
+        <label :for="item.text" class="form-check-label fs-6">
+          {{ item.text }}
+        </label>
       </div>
     </div>
     <div class="text-center">
@@ -29,26 +28,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from "vue";
-import { personData } from "@/store/ill.model";
+import { defineComponent, ref } from "vue";
 import errCheck from "@/store/errCheck";
 import router from "@/router/index";
-import { questions } from "@/store/questionnaire";
+import { qs } from "@/store/questionnaire";
 
 export default defineComponent({
   name: "MediForm",
   setup() {
-    const answer = ref([]);
-    const riskNumber = ref(99);
+    let index = 2;
+    const a = ref([0, 0, 0]);
+    const onclick = () => {
+      console.log(index);
+      console.log(a.value);
+      console.log(qs[index].nextQID(a.value[index]));
+      let n: number = qs[index].nextQID(a.value[index]);
+      index = n;
+    };
+    console.log(qs[index]);
     return {
-      questions,
+      a,
+      onclick,
     };
   },
 });
 </script>
 
 <style scoped>
-@import "@/bootstrap.css";
+@import "@/bootstrap-5.0.2-dist/css/bootstrap.min.css";
 
 /* table {
   display: block;
@@ -64,12 +71,12 @@ export default defineComponent({
 .color_2 {
   background-color: lightcyan;
 }
-input {
+/* input {
   font-size: 1em;
 }
 label {
   font-size: 1em;
-}
+} */
 .fontL {
   font-size: 1.4em;
 }

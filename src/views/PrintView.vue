@@ -2,16 +2,14 @@
   <div class="page">
     <!-- Head -->
     <div class="h_L f_Title Left">
-      宛先&nbsp;:&nbsp;あま市民病院院長&emsp;&emsp;梅屋&emsp;崇
+      宛先 :&emsp;&emsp;あま市民病院院長&emsp;&emsp;梅屋&emsp;崇
     </div>
     <div class="h_M f_M Right">
-      FAX: 052-462-0655&nbsp;（受付時間&nbsp;:&nbsp;平日８時半～１７時）
+      FAX: 052-462-0655&nbsp;（受付時間&nbsp;:&nbsp;終日）
     </div>
-    <div class="h_S"></div>
-    <div class="f_M Left h_M">
+    <div class="f_M Left h_L">
       酸素需要予測スコアに基づき、下記患者の治療をご検討ください。
     </div>
-    <div class="h_M"></div>
 
     <table class="wide">
       <tr class="h_S">
@@ -25,15 +23,11 @@
     </table>
     <!-- INPUT_1 -->
     <table class="thick wide Large" border="1">
-      <tr>
-        <td>医療機関名称</td>
-        <td>担当医師名</td>
-      </tr>
       <tr class="h_M">
         <td rowspan="2">
           <table class="v2">
             <tr>
-              <td>所在地</td>
+              <td>医療機関名称</td>
             </tr>
             <tr>
               <td></td>
@@ -52,6 +46,10 @@
         </td>
       </tr>
       <tr class="h_M"></tr>
+      <tr>
+        <td>担当医師名</td>
+        <td>所在地</td>
+      </tr>
     </table>
     <!-- INPUT_2 -->
     <table class="thick wide Large" border="1">
@@ -117,7 +115,7 @@
       <tr>
         <td>
           <!-- Input_3.1 -->
-          <div class="f_S Center">適応外項目がないか確認（レ点）</div>
+          <div class="h_S Center">適応外項目がないか確認（レ点）</div>
           <table class="half thick _7-1 Middle" border="1">
             <tr>
               <td>SARS-Co2感染を確認</td>
@@ -159,7 +157,7 @@
               <td class="Center">スコア</td>
             </tr>
             <tr>
-              <td class="Center">{{ ageType }}&emsp;&emsp;(99)</td>
+              <td class="Center">{{ ageType }}&emsp;&emsp;({{ cutoff }})</td>
               <td class="Center f_L">{{ score }}</td>
               <!-- <td class="Center">{{ score }}</td> -->
             </tr>
@@ -218,19 +216,22 @@
         </td>
       </tr>
     </table>
-    <div class="h_L"></div>
     <div class="h_S"></div>
     <hr />
     <!-- Foot -->
-    <div class="h_M f_L Left">回答 :</div>
-    <table class="_7-3-7">
+    <table class="_2-7-2-7">
       <tr class="h_L">
-        <td class="f_M">
-          1.受診予定（予約日&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
+        <td>
+          <b class="f_L">回答</b>
         </td>
-        <td class="f_M">2.検討中</td>
         <td class="f_M">
-          3.不可（理由&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
+          1. 受診予定（予約日&emsp;&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
+        </td>
+        <td class="f_M">2. 検討中</td>
+        <td class="f_M">
+          3. 不可（理由&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;）
         </td>
       </tr>
     </table>
@@ -250,11 +251,11 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "PrintComponent",
+  name: "PrintView",
   props: {
     age: {
       type: Number,
-      default: 18,
+      default: 999,
     },
     sex: {
       type: String,
@@ -262,7 +263,7 @@ export default defineComponent({
     },
     score: {
       type: Number,
-      default: 6,
+      default: 99,
     },
     ageType: {
       type: String,
@@ -270,11 +271,15 @@ export default defineComponent({
     },
     bmi: {
       type: Number,
-      default: 22,
+      default: 99,
     },
     ills: {
       type: Array,
       default: new Array<string>("&#9675", "―", "", "", "", "", "", "", "", ""),
+    },
+    cutoff: {
+      type: Number,
+      default: 99,
     },
   },
 });
@@ -282,8 +287,9 @@ export default defineComponent({
 
 <style scoped>
 @page {
-  size: A4 portrait;
+  size: 210mm 297mm portrait;
   margin: 0mm;
+  overflow: visible;
 }
 * {
   margin: 0mm;
@@ -291,21 +297,27 @@ export default defineComponent({
   border-collapse: collapse;
   border-color: black;
 }
+
 .page {
-  margin: 0mm auto;
+  margin: 0 auto;
+  padding: 0mm;
   page-break-after: avoid;
   box-sizing: border-box;
-  padding: 10mm;
-  font-size: 13px;
-  background-color: white;
-  position: relative;
+  /* ver,hor */
+  padding: 5mm 10mm;
+  font-size: 12px;
   width: 210mm;
   height: 297mm;
+  background-color: cornsilk;
 }
 body {
-  width: 190mm;
+  width: 210mm;
   height: 297mm;
-  transform-origin: 0mm;
+  padding: 0mm;
+  margin: 0mm;
+}
+html {
+  padding: 0mm;
 }
 table.thick {
   border: 1mm solid;
@@ -320,7 +332,7 @@ table.half {
 }
 table.wide {
   width: 190mm;
-  margin: 2mm 0mm;
+  margin: 2mm auto;
   padding: 0mm;
 }
 table._4-4 td {
@@ -336,42 +348,45 @@ table._7-1 td:nth-child(odd) {
   width: 75mm;
 }
 table._7-1 td:nth-child(even) {
-  width: 10mm;
+  width: 15mm;
 }
-table._7-3-7 td:nth-child(odd) {
-  width: 80mm;
+table._2-7-2-7 td:nth-child(odd) {
+  width: 20mm;
 }
-table._7-3-7 td:nth-child(even) {
-  width: 30mm;
+table._2-7-2-7 td:nth-child(even) {
+  width: 75mm;
 }
 .textArea {
-  height: 21mm !important;
+  height: 24mm !important;
 }
 td {
   text-align: left;
   text-indent: 1.5mm;
 }
 table.Large tr {
-  height: 12mm;
+  height: 11mm;
 }
 table.Middle tr {
-  height: 9mm;
+  height: 8.5mm;
 }
 table.wide td {
   width: 95mm;
 }
 table.v2 tr {
-  height: 9mm;
+  height: 8mm;
 }
 table.w20 td {
   width: 20mm;
 }
+table.w20 tr {
+  height: 8mm;
+}
 /* Height */
 .h_L {
-  height: 11mm !important;
+  height: 10mm !important;
 }
 .h_M {
-  height: 9mm !important;
+  height: 8mm !important;
 }
 .h_S {
   height: 5mm !important;
@@ -393,10 +408,10 @@ table.w20 td {
 }
 /* Font-Size */
 .f_L {
-  font-size: 18px;
+  font-size: 16px;
 }
 .f_M {
-  font-size: 13px;
+  font-size: 12px;
 }
 .f_S {
   font-size: 10px;

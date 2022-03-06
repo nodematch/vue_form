@@ -113,6 +113,7 @@ import { personData } from "@/store/ill.model";
 import { ills } from "@/store/ill.data";
 import errCheck from "@/store/errCheck";
 import router from "@/router/index";
+import TitleInf_v2Vue from "@/views/TitleInf_v2.vue";
 
 export default defineComponent({
   name: "ScoreForm",
@@ -164,7 +165,9 @@ export default defineComponent({
           result = window.confirm(resultMsg.value);
           if (result) {
             console.log("Y");
-            window.location.href = "https://www.google.com";
+            router.push({
+              name: "titleInfv2",
+            });
           } else {
             console.log("N");
           }
@@ -186,7 +189,7 @@ export default defineComponent({
       let ills_: string[] = new Array<string>(illVal.value.length);
       for (let i = 0; i < ills.length; i++) {
         if (!ills[i].isShow(pd.ageType)) {
-          ills_[i] = "――";
+          ills_[i] = "―";
         } else if (illVal.value[i] == 1) {
           ills_[i] = "&#9675";
         } else {
@@ -194,10 +197,13 @@ export default defineComponent({
         }
       }
       let ageType_ = "18-39";
+      let cutoff_ = 6;
       if (pd.ageType == 1) {
         ageType_ = "40-64";
+        cutoff_ = 5;
       } else if (pd.ageType == 2) {
         ageType_ = "65-";
+        cutoff_ = 3;
       }
       router.push({
         name: "print",
@@ -208,6 +214,7 @@ export default defineComponent({
           bmi: Math.floor(pd.bmi * 10) / 10,
           score: pd.score.toString(),
           ageType: ageType_,
+          cutoff: cutoff_,
         },
       });
     };
