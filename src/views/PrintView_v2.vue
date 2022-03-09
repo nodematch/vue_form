@@ -159,7 +159,7 @@
         </td>
         <td>
           <!-- Input_3.3 -->
-          <div>*パキロピッドパックでは必須</div>
+          <div>*パキロビッドパックでは必須</div>
           <br />
           <p class="center">スクリーニング推奨薬</p>
           <table class="half lineThick step-2a" border="1">

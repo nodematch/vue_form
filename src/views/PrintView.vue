@@ -85,7 +85,7 @@
     <table class="even">
       <tr>
         <td></td>
-        <td>*パキロピッドパックでは必須</td>
+        <td>*パキロビッドパックでは必須</td>
       </tr>
     </table>
 

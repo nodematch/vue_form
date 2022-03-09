@@ -53,13 +53,19 @@
 <script lang="ts">
 import router from "@/router";
 import { defineComponent } from "vue";
+import { parseQuery } from "vue-router";
 
 export default defineComponent({
   name: "TitleInf",
   setup() {
+    if (location.search == "?id=printv2") {
+      router.push({
+        name: "printv2",
+      });
+    }
     const go1 = () => {
       router.push({
-        name: "home",
+        name: "scoreForm",
       });
     };
     const go2 = () => {

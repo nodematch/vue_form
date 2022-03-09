@@ -1,14 +1,14 @@
 <template>
-  <div></div>
+  <div>Not Found</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "HomeView",
+  name: "notFound",
   setup() {
-    console.log("home");
-  }
+    console.log(location.href);
+  },
 });
 </script>

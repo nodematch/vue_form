@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div class="text-center m-3 fs-1">
+      COVID-19 酸素必要性予測のスクリーニング
+    </div>
     <div class="text-center m-3 fs-1">入力フォーム</div>
     <div class="row mb-2 p-2 color_1 align-items-center">
       <div class="col-6">
