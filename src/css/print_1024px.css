@@ -1,0 +1,166 @@
+@page {
+  size: A4 portrait;
+  margin: 0mm;
+  padding: 0mm;
+}
+* {
+  margin: 0mm;
+  padding: 0mm;
+  border-collapse: collapse;
+  border-color: black;
+}
+.page {
+  margin: 0 auto;
+  padding: 0mm;
+  page-break-after: avoid;
+  box-sizing: border-box;
+  /* ver,hor */
+  padding: 40px 45px;
+  width: 1024px;
+  height: 1440px;
+  background-color: rgb(235, 235, 235);
+}
+body {
+  font-size: 16px;
+  width: 900px;
+  height: 1280px;
+  padding: 0mm;
+  margin: 0px;
+}
+
+/* Height */
+.heightL {
+  height: 50px !important;
+}
+.heightM {
+  height: 40px !important;
+}
+.heightS {
+  height: 25px !important;
+}
+/* Text-Align */
+.left {
+  text-align: left !important;
+  text-indent: 1.5mm;
+}
+.center {
+  text-align: center !important;
+}
+.right {
+  text-align: right !important;
+}
+/* Font-Size */
+.fontL {
+  font-size: 21px !important;
+}
+.fontS {
+  font-size: 12px !important;
+}
+.fontTitle {
+  font-size: 24px !important;
+}
+
+/* tables */
+table.lineThick {
+  border: 5px solid black;
+}
+table.lineNormal {
+  border: 2px solid;
+}
+/* WideTable */
+table.wide {
+  table-layout: fixed;
+  width: 100%;
+  margin: 5px auto;
+  padding: 0mm;
+}
+table.wide tr{
+  height: 40px;
+}
+table.wide td {
+  text-align: left;
+  text-indent: 5px;
+  border-width: 2px;
+}
+/* TableHalf */
+table.half {
+  width: 98%;
+  margin: 5px auto;
+  padding: 0mm;
+}
+table.half tr{
+  height: 32px;
+}
+table.half td {
+  border-width: 2px;
+  text-align: left;
+  text-indent: 5px;
+}
+
+/* TableWidth */
+table.even{
+  width: 100%;
+  table-layout: fixed;
+}
+table.step-2b {
+  width: 100%;
+}
+table.step-2 td:nth-child(odd) {
+  width: 90%;
+  font-size: smaller;
+}
+table.step-2 td:nth-child(even) {
+  width: 10%;
+}
+table.step-4 td:nth-child(odd) {
+  width: 40%;
+}
+table.step-4 td:nth-child(even) {
+  width: 10%;
+}
+table.step-2a td:nth-child(odd){
+  width: 20%;
+}
+table.step-2a td:nth-child(even){
+  width: 80%;
+}
+table.step-2b td:nth-child(odd){
+  width: 70%;
+}
+table.step-2b td:nth-child(even){
+  width: 30%;
+}
+
+/* Others */
+.textArea {
+  height: 24mm !important;
+}
+div.row {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 40px;
+}
+div.row div {
+  text-indent: 16px;
+  text-align: left;
+  display: table-cell;
+  height: 40px
+}
+table.layout {
+  width: 100%;
+  table-layout: fixed;
+}
+p {
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+hr {
+  border-top: 4px solid black;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+}
+.box {
+  border: black 5px solid;
+}

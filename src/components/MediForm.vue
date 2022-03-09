@@ -55,7 +55,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/bootstrap-5.0.2-dist/css/bootstrap.min.css";
+@import "@/css/bootstrap.min.css";
 
 /* table {
   display: block;

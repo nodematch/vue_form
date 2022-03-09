@@ -1,9 +1,11 @@
 <template>
   <div class="container">
-    <div class="text-center mb-3 fontL">入力フォーム</div>
-    <div class="form-group color_1">
-      <div class="form-inline">
-        <label for="age" class="col-6">年齢</label>
+    <div class="text-center m-3 fs-1">入力フォーム</div>
+    <div class="row mb-2 p-2 color_1 align-items-center">
+      <div class="col-6">
+        <label for="age">年齢</label>
+      </div>
+      <div class="col-6">
         <input
           type="number"
           maxlength="3"
@@ -11,36 +13,46 @@
           @change="setAge"
           max="150"
           min="18"
-          class="form-control col-6"
+          class="form-control"
         />
       </div>
     </div>
-    <div class="form-group color_1">
-      <div class="form-inline">
-        <label class="col-6">性別</label>
+    <div class="row mb-2 p-2 color_1 align-items-center">
+      <div class="col-6">
+        <label>性別</label>
+      </div>
+      <div class="col-1">
         <input
           type="radio"
           name="sex"
           id="female"
           value="0"
           v-model="sex"
-          class="form-check col-1"
+          class="form-check-input"
         />
-        <label for="female" class="form-check-label col-2">女</label>
+      </div>
+      <div class="col-2">
+        <label for="female" class="form-check-label">女</label>
+      </div>
+      <div class="col-1">
         <input
           type="radio"
           name="sex"
           id="male"
           value="1"
           v-model="sex"
-          class="form-check col-1"
+          class="form-check-input"
         />
-        <label for="male" class="form-check-label col-2">男</label>
+      </div>
+      <div class="col-2">
+        <label for="male" class="form-check-label">男</label>
       </div>
     </div>
-    <div class="form-group color_1">
-      <div class="form-inline">
-        <label for="age" class="col-6">身長</label>
+    <div class="row mb-2 p-2 color_1 align-items-center">
+      <div class="col-6">
+        <label for="age">身長</label>
+      </div>
+      <div class="col-6">
         <input
           type="number"
           maxlength="3"
@@ -48,13 +60,15 @@
           max="299"
           min="0"
           @change="setBMIs"
-          class="form-control col-6"
+          class="form-control"
         />
       </div>
     </div>
-    <div class="form-group color_1">
-      <div class="form-inline">
-        <label for="age" class="col-6">体重</label>
+    <div class="row mb-2 p-2 color_1 align-items-center">
+      <div class="col-6">
+        <label for="age">体重</label>
+      </div>
+      <div class="col-6">
         <input
           type="number"
           maxlength="3"
@@ -62,47 +76,48 @@
           max="199"
           min="0"
           @change="setBMIs"
-          class="form-control col-6"
+          class="form-control"
         />
       </div>
     </div>
-    <!-- <div class="form-group color_1">
-      <div class="form-inline">
-        <label for="age" class="col-6">BMI</label>
-        <div class="col-6">{{ bmi() }}</div>
-      </div>
-    </div> -->
-    <div v-for="(ill, idx) in ills" :key="ill.name" class="color_2">
-      <div class="form-group" v-if="ill.isShow(ageType)">
-        <div class="form-inline">
-          <label class="col-6">{{ ill.name }}</label>
+    <div v-for="(ill, idx) in ills" :key="ill.name">
+      <div
+        class="row mb-2 p-2 color_2 align-items-center"
+        v-if="ill.isShow(ageType)"
+      >
+        <div class="col-6">
+          <label>{{ ill.name }}</label>
+        </div>
+        <div class="col-1">
           <input
             type="radio"
             :name="ill.name"
             value="1"
             :id="'y' + ill.name"
             v-model.number="illVal[idx]"
-            class="form-check col-1"
+            class="form-check-input"
           />
-          <label :for="'y' + ill.name" class="form-check-label col-2">
-            有
-          </label>
+        </div>
+        <div class="col-2">
+          <label :for="'y' + ill.name" class="form-check-label">有</label>
+        </div>
+        <div class="col-1">
           <input
             type="radio"
             :name="ill.name"
             value="0"
             :id="'n' + ill.name"
             v-model.number="illVal[idx]"
-            class="form-check col-1"
+            class="form-check-input"
           />
-          <label :for="'n' + ill.name" class="form-check-label col-2">
-            無
-          </label>
+        </div>
+        <div class="col-2">
+          <label :for="'n' + ill.name" class="form-check-label">無</label>
         </div>
       </div>
     </div>
     <div class="text-center">
-      <button class="btn btn-primary" @click="onclick">完了</button>
+      <button class="btn btn-primary m-4 fs-1" @click="onclick">完了</button>
     </div>
   </div>
 </template>
@@ -113,7 +128,6 @@ import { personData } from "@/store/ill.model";
 import { ills } from "@/store/ill.data";
 import errCheck from "@/store/errCheck";
 import router from "@/router/index";
-import TitleInf_v2Vue from "@/views/TitleInf_v2.vue";
 
 export default defineComponent({
   name: "ScoreForm",
@@ -161,7 +175,8 @@ export default defineComponent({
         console.log("bmi = " + pd.bmi + " ,score = " + pd.score);
         var result;
         if (!pd.judge()) {
-          resultMsg.value = "低いスコア : 次の入力フォームへ進んで下さい";
+          resultMsg.value =
+            "低いスコア(" + pd.score + ") : 次の入力フォームへ進んで下さい";
           result = window.confirm(resultMsg.value);
           if (result) {
             console.log("Y");
@@ -173,7 +188,9 @@ export default defineComponent({
           }
         } else {
           resultMsg.value =
-            "高いスコア : 表示されるページの印刷、およびFaxをお願いします";
+            "高いスコア(" +
+            pd.score +
+            ") : 表示されるページの印刷、およびFaxをお願いします";
           result = window.confirm(resultMsg.value);
           if (result) {
             console.log("Y");
@@ -240,29 +257,15 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/bootstrap.css";
-
-/* table {
-  display: block;
-  max-width: 16em;
-  margin: auto;
-  border-collapse: collapse;
-  border-spacing: 1em 1em;
-  font-size: 1.5em;
-} */
+@import "@/css/bootstrap.min.css";
+label,
+input {
+  font-size: 1.8em;
+}
 .color_1 {
   background-color: rgb(235, 235, 235);
 }
 .color_2 {
   background-color: lightcyan;
-}
-input {
-  font-size: 1em;
-}
-label {
-  font-size: 1em;
-}
-.fontL {
-  font-size: 1.4em;
 }
 </style>

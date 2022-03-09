@@ -25,3 +25,5 @@ const Qc: SingleQ = new SingleQ(
 );
 
 export const qs: Array<SingleQ> = [Qa, Qb, Qc];
+
+// https://forms.office.com/Pages/ResponsePage.aspx?id=uDKHwHaraE2cVKdNIWbiGjagFg6-k9hEl_quC62v_dNUM1BXN1BJRTFWQUw4WU9RMkpZUEhBRUhPOS4u

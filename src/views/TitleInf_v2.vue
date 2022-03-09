@@ -1,31 +1,43 @@
 <template>
   <div class="container">
-    <div class="head">
-      <p>{{ head[0] }}</p>
-      <p>{{ head[1] }}</p>
-      <p class="text-right">{{ head[2] }}</p>
+    <div class="m-1">
+      <div class="text-center fs-2">{{ head[0] }}</div>
+      <div class="text-center fs-2">{{ head[1] }}</div>
+      <div class="text-end fs-4">{{ head[2] }}</div>
     </div>
-    <div class="title">
-      <p>{{ title[0] }}</p>
-      <p>{{ title[1] }}</p>
+    <div class="fs-3 p-2 title">
+      <div>{{ title[0] }}</div>
+      <div>{{ title[1] }}</div>
     </div>
-    <table class="msg table-borderless">
-      <tr>
-        <td class="col-2 text-center">特徴</td>
-        <td>{{ msg[0] }}</td>
-      </tr>
-      <tr>
-        <td class="col-2 text-center">対象</td>
-        <td>{{ msg[1] }}</td>
-      </tr>
-      <tr>
-        <td class="col-2 text-center">参考文献</td>
-        <td>{{ msg[2] }}</td>
-      </tr>
-    </table>
+    <div class="msg fs-5">
+      <div class="row p-1">
+        <div class="col-2">
+          <div class="text-center">特徴</div>
+        </div>
+        <div class="col-10">
+          {{ msg[0] }}
+        </div>
+      </div>
+      <div class="row p-1">
+        <div class="col-2">
+          <div class="text-center">対象</div>
+        </div>
+        <div class="col-10">
+          {{ msg[1] }}
+        </div>
+      </div>
+      <div class="row p-1">
+        <div class="col-2">
+          <div class="text-center">参考文献</div>
+        </div>
+        <div class="col-10">
+          {{ msg[2] }}
+        </div>
+      </div>
+    </div>
     <div class="text-center">
-      <button class="btn block-center" @click="onclick">
-        治療薬選択フローシートへ
+      <button class="btn btn-success m-2" @click="onclick">
+        入力フォームへ進む
       </button>
     </div>
   </div>
@@ -67,33 +79,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/bootstrap.css";
+@import "@/css/bootstrap.min.css";
 
-.head {
-  margin: 1em 0em;
-}
-.head p {
-  font-size: 1.5em;
-}
 .title {
   background-color: rgb(156, 156, 240);
-  margin: 0;
-  padding: 0.3em 0.2em;
-}
-.title p {
-  font-size: 1.2em;
-  margin: 0.1em;
 }
 .msg {
-  margin: 0;
   background-color: rgb(194, 211, 248);
-}
-.msg td {
-  font-size: 1em;
-  text-align: left;
-  padding: 0.2em 1em;
-}
-.btn {
-  margin: 1em;
 }
 </style>
