@@ -1,29 +1,42 @@
-import { SingleQ, risks } from "./questionnaire.model";
+import { Category, MultiCheck, SingleCheck } from "./questionnaire.model";
 
-const Qa: SingleQ = new SingleQ(
-  "qa",
-  [
-    { id: 0, text: "a-1" },
-    { id: 1, text: "a-2" },
-  ],
-  (answer: number) => {
-    return answer == 0 ? 1 : 2;
-  }
-);
-const Qb: SingleQ = new SingleQ("qb", risks, (answer: number) => {
-  return 2;
-});
-const Qc: SingleQ = new SingleQ(
-  "qc",
-  [
-    { id: 0, text: "b-1" },
-    { id: 1, text: "b-2" },
-  ],
-  (answer: number) => {
-    return 0;
-  }
-);
-
-export const qs: Array<SingleQ> = [Qa, Qb, Qc];
+export const singleCheck: SingleCheck = new SingleCheck([
+  {
+    message: "ワクチン歴、コロナ感染歴",
+    choices: [
+      { id: 0, text: "A" },
+      { id: 1, text: "B" },
+      { id: 2, text: "一つも当てはまらない" },
+    ],
+    next: (answer: number) => {
+      return { category: Category.singleCheck, index: 1 };
+    },
+  },
+  {
+    message: "ワクチン歴、コロナ感染歴",
+    choices: [
+      { id: 0, text: "c" },
+      { id: 1, text: "d" },
+      { id: 2, text: "一つも当てはまらない" },
+    ],
+    next: (answer: number) => {
+      return { category: Category.singleCheck, index: 1 };
+    },
+  },
+]);
+export const multiCheck: MultiCheck = new MultiCheck([
+  {
+    message: "mul",
+    choices: [
+      { id: 0, text: "m1" },
+      { id: 1, text: "m2" },
+      { id: 2, text: "m3" },
+      { id: 3, text: "m4" },
+    ],
+    next: (answer: number[]) => {
+      return { category: Category.singleCheck, index: 1 };
+    },
+  },
+]);
 
 // https://forms.office.com/Pages/ResponsePage.aspx?id=uDKHwHaraE2cVKdNIWbiGjagFg6-k9hEl_quC62v_dNUM1BXN1BJRTFWQUw4WU9RMkpZUEhBRUhPOS4u

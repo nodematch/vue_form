@@ -9,6 +9,6 @@ export default defineComponent({
   name: "HomeView",
   setup() {
     console.log("home");
-  }
+  },
 });
 </script>

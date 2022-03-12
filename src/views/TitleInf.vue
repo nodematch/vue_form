@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="m-1">
-      <div class="text-center fs-2">{{ head[0] }}</div>
-      <div class="text-center fs-2">{{ head[1] }}</div>
-      <div class="text-end fs-4">{{ head[2] }}</div>
+      <div class="text-center fs-3">{{ head[0] }}</div>
+      <div class="text-center fs-3">{{ head[1] }}</div>
+      <div class="text-end fs-6">{{ head[2] }}</div>
     </div>
     <div class="fs-3 p-2 title">
       <div>{{ title[0] }}</div>
@@ -28,9 +28,9 @@
       </div>
       <div class="row p-1">
         <div class="col-2">
-          <div class="text-center">参考文献</div>
+          <div class="text-center fs-6">参考文献</div>
         </div>
-        <div class="col-10">
+        <div class="col-10 fs-6">
           {{ msg[2] }}
         </div>
       </div>
@@ -38,12 +38,12 @@
     <div class="row justify-content-center">
       <div class="col-auto">
         <button class="btn btn-success m-2" @click="go2">
-          ～発症３日目(day0-2) 「早期治療薬スクリーニング（STEP2）」へ進む
+          day0-2 （ ～発症３日目）「早期治療薬スクリーニング（STEP2）」へ進む
         </button>
       </div>
       <div class="col-auto">
         <button class="btn btn-primary m-2" @click="go1">
-          発症４～７日目(day3-6) 「酸素需要予測スクリーニング（STEP1)」へ進む
+          day3～7（発症4～8日目）「酸素需要予測スクリーニング（STEP1)」へ進む
         </button>
       </div>
     </div>
@@ -53,7 +53,6 @@
 <script lang="ts">
 import router from "@/router";
 import { defineComponent } from "vue";
-import { parseQuery } from "vue-router";
 
 export default defineComponent({
   name: "TitleInf",
@@ -78,13 +77,10 @@ export default defineComponent({
       "発症早期における治療選択フロー第１版",
       "あま市民病院ICT作成（2022年3月7日）",
     ];
-    const title = [
-      "STEP 1",
-      "COVID-19 酸素必要性予測のスクリーニング（YamadaらのCOVIREGI-JPの解析より）",
-    ];
+    const title = ["STEP 1", "COVID-19 酸素必要性予測のスクリーニング"];
     const msg = [
-      "SpO2値を使わないため、電話診療でも、判定可能。高齢者は感度高く、若年者は特異度を高く、カットオフ値設定。ここでは外来患者を対象とする。",
-      "発症4～8日目（day3～7)の患者",
+      "SpO2値を使わないため、電話診療でも、判定可能。高齢者は感度高く、若年者は特異度を高く、カットオフ値設定。",
+      "day3～7（発症4～8日目）の外来患者（発症日をday0とする）",
       "Yamada G,et al. Predicting respiratory failure for COVID-19 :a simple clinical score for evaluating the need for hospitalization. Epidemiol Infect 2021",
     ];
     return {

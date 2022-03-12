@@ -109,6 +109,57 @@
               <td></td>
             </tr>
           </table>
+          <p class="center">該当する重症化リスク（レ点）</p>
+          <table class="half lineThick step-2" border="1">
+            <tr>
+              <td>{{ riskB[0] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[1] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[2] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[3] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[4] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[5] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[6] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[7] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[8] }}</td>
+              <td></td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <!-- Input_3.3 -->
+          <div>*パキロビッドパックでは必須</div>
+          <p class="center">スクリーニング推奨薬</p>
+          <table class="half lineThick step-2a" border="1">
+            <tr>
+              <td>薬名</td>
+              <td></td>
+            </tr>
+          </table>
+          <br />
           <p class="center">該当する重症化リスク・重度（レ点）</p>
           <table class="half lineThick step-2" border="1">
             <tr>
@@ -157,67 +208,9 @@
             </tr>
           </table>
         </td>
-        <td>
-          <!-- Input_3.3 -->
-          <div>*パキロビッドパックでは必須</div>
-          <br />
-          <p class="center">スクリーニング推奨薬</p>
-          <table class="half lineThick step-2a" border="1">
-            <tr>
-              <td>薬名</td>
-              <td></td>
-            </tr>
-          </table>
-          <br />
-          <br />
-          <br />
-          <br />
-          <p class="center">該当する重症化リスク・軽度（レ点）</p>
-          <table class="half lineThick step-2" border="1">
-            <tr>
-              <td>{{ riskB[0] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[1] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[2] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[3] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[4] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[5] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[6] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[7] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[8] }}</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ riskB[9] }}</td>
-              <td></td>
-            </tr>
-          </table>
-        </td>
       </tr>
     </table>
+    <br />
     <hr />
     <!-- Foot -->
     <p>

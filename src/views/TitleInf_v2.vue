@@ -1,10 +1,5 @@
 <template>
   <div class="container">
-    <div class="m-1">
-      <div class="text-center fs-2">{{ head[0] }}</div>
-      <div class="text-center fs-2">{{ head[1] }}</div>
-      <div class="text-end fs-4">{{ head[2] }}</div>
-    </div>
     <div class="fs-3 p-2 title">
       <div>{{ title[0] }}</div>
       <div>{{ title[1] }}</div>
@@ -28,9 +23,9 @@
       </div>
       <div class="row p-1">
         <div class="col-2">
-          <div class="text-center">参考文献</div>
+          <div class="text-center fs-6">参考文献</div>
         </div>
-        <div class="col-10">
+        <div class="col-10 fs-6">
           {{ msg[2] }}
         </div>
       </div>
@@ -61,11 +56,11 @@ export default defineComponent({
     ];
     const title = [
       "STEP 2",
-      "重症化リスク(+) COVID-19早期治療薬スクリーニング（あま市民病院ICT）",
+      "重症化リスク(+) COVID-19早期治療薬スクリーニング",
     ];
     const msg = [
       "ワクチン、リスク因子、症状、発症日からの日数、投与までのタイムラグを考慮。適応のある患者に、より多くより早く、初期治療薬投与を目的とするため、発症から日が浅く症状が軽い場合は、内服薬を優先。",
-      "発症から8日目以内（day 7 以内）、重症化リスク（＋）、発症日、SpO2が必要",
+      "day 7 以内（発症から8日目以内）、重症化リスク（＋）、発症日、SpO2が必要。（発症日をday0とする）",
       "Terada M. et.al. Risk factors for severity on admission and the disease progression during hospitalization in a large cohort of patients with COVID-19 in Japan 国立国際医療センター、COVID-19 レジストリ研究解析結果",
     ];
     return {

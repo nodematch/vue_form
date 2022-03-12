@@ -17,13 +17,13 @@
   /* ver,hor */
   padding: 40px 45px;
   width: 1024px;
-  height: 1440px;
+  height: 1400px;
   background-color: rgb(235, 235, 235);
 }
 body {
   font-size: 16px;
   width: 900px;
-  height: 1280px;
+  height: 1300px;
   padding: 0mm;
   margin: 0px;
 }

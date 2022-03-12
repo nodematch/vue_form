@@ -12,13 +12,12 @@ const routes: Array<RouteRecordRaw> = [
     name: "titleInf",
     component: () => import("../views/TitleInf.vue"),
   },
-  // {
-  //   path: "/medi",
-  //   name: "medi",
-  //   props: true,
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  // },
+  {
+    path: "/medi",
+    name: "medi",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/MediForm.vue"),
+  },
   {
     path: "/print",
     name: "print",
