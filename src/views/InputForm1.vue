@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="text-center m-3 fs-1">
-      COVID-19 酸素必要性予測のスクリーニング
+      COVID-19 酸素需要予測のスクリーニング
     </div>
     <div class="text-center m-3 fs-2">STEP1 入力フォーム</div>
     <div class="row mb-2 p-2 color_1 align-items-center">
@@ -133,7 +133,7 @@ import errCheck from "@/store/errCheck";
 import router from "@/router/index";
 
 export default defineComponent({
-  name: "ScoreForm",
+  name: "InputForm1",
   setup() {
     let pd = new personData({ age: 18, sex: 0, height: 160, weight: 50 }, ills);
     const age = ref(0);
@@ -184,7 +184,7 @@ export default defineComponent({
           if (result) {
             console.log("Y");
             router.push({
-              name: "titleInfv2",
+              name: "TitleInformation2",
             });
           } else {
             console.log("N");
@@ -226,7 +226,7 @@ export default defineComponent({
         cutoff_ = 3;
       }
       router.push({
-        name: "print",
+        name: "PrintView1",
         params: {
           age: pd.age,
           sex: sexStr,

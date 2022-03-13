@@ -1,11 +1,11 @@
 <template>
   <div class="page">
     <!-- Head -->
-    <div class="fontTitle center">コロナ酸素需要予測患者 紹介FAX</div>
+    <div class="fontTitle center">コロナ重症化リスク患者 紹介FAX</div>
     <div class="left fontL">宛先&emsp;あま市民病院院長 梅屋 崇</div>
     <div class="right">FAX: 052-462-0655 （受付時間 : 終日）</div>
     <div class="left">
-      &emsp;初期治療選択フローに基づき、下記患者の治療をご検討ください。
+      &emsp;酸素需要予測スコアに基づき、下記患者の治療をご検討ください。
     </div>
     <table class="step-2b">
       <tr>
@@ -82,34 +82,24 @@
         </td>
       </tr>
     </table>
-    <table class="even">
-      <tr>
-        <td></td>
-        <td>*パキロビッドパックでは必須</td>
-      </tr>
-    </table>
 
     <!-- Input_3 -->
     <table class="layout">
       <tr>
         <td>
           <!-- Input_3.1 -->
-          <div class="center">適応外項目がないか確認（レ点）</div>
+          <p class="center">適応外項目がないか確認（レ点）</p>
           <table class="half lineThick step-2" border="1">
             <tr>
-              <td>SARS-Co2感染を確認</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>発症している</td>
+              <td>SARS-Co2感染を確認、発症している</td>
               <td></td>
             </tr>
             <tr>
               <td>酸素が必要でない（SpO2: 93以上）</td>
               <td></td>
             </tr>
-            <tr>
-              <td>
+            <tr class="h10">
+              <td class="heightL">
                 ゼビュディ、パキロピッドパック、レムデジビルの成分に対して重い過敏症の既往がない
               </td>
               <td></td>
@@ -119,83 +109,108 @@
               <td></td>
             </tr>
           </table>
-          <!-- Input_3.2 -->
-          <div class="center">備考 : その他リスク因子等</div>
-          <table class="half lineThick">
-            <tr class="textArea">
+          <p class="center">該当する重症化リスク（レ点）</p>
+          <table class="half lineThick step-2" border="1">
+            <tr>
+              <td>{{ riskB[0] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[1] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[2] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[3] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[4] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[5] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[6] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[7] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskB[8] }}</td>
               <td></td>
             </tr>
           </table>
         </td>
         <td>
           <!-- Input_3.3 -->
-          <p class="center">重症化予測スコア（COVIREGI-JPの解析）</p>
-          <table class="half lineNormal even" border="1">
+          <div>*パキロビッドパックでは必須</div>
+          <p class="center">スクリーニング推奨薬</p>
+          <table class="half lineThick step-2a" border="1">
             <tr>
-              <td class="center">年代&emsp;(カットオフ値)</td>
-              <td class="center">スコア</td>
-            </tr>
-            <tr>
-              <td class="center">{{ ageType }}&emsp;&emsp;({{ cutoff }})</td>
-              <td class="center">{{ score }}</td>
-              <!-- <td class="center">{{ score }}</td> -->
-            </tr>
-          </table>
-          <!-- Input_3.4 -->
-          <p class="center">
-            スコア詳細（&#9675; : 症状あり、&emsp;― : 症状なし）
-          </p>
-          <table class="half lineNormal step-4" border="1">
-            <tr>
-              <td>BMI</td>
-              <td class="center">{{ bmi }}</td>
-              <td>うっ血性心不全</td>
-              <td class="center" v-html="ills[0]"></td>
-            </tr>
-            <tr>
-              <td>脳血管疾患</td>
-              <td class="center" v-html="ills[1]"></td>
-              <td>糖尿病</td>
-              <td class="center" v-html="ills[2]"></td>
-            </tr>
-            <tr>
-              <td>高血圧</td>
-              <td class="center" v-html="ills[3]"></td>
-              <td>悪性疾患</td>
-              <td class="center" v-html="ills[4]"></td>
-            </tr>
-            <tr>
-              <td>発熱</td>
-              <td class="center" v-html="ills[5]"></td>
-              <td>咳</td>
-              <td class="center" v-html="ills[6]"></td>
-            </tr>
-            <tr>
-              <td>呼吸困難</td>
-              <td class="center" v-html="ills[7]"></td>
-              <td>喘鳴</td>
-              <td class="center" v-html="ills[8]"></td>
-            </tr>
-            <tr>
-              <td>倦怠感</td>
-              <td class="center" v-html="ills[9]"></td>
-              <td></td>
+              <td>薬名</td>
               <td></td>
             </tr>
           </table>
-          <!-- <div class="Left-Left">
-            Yamada G,et al.Predicting respriatory failure for COVID-19
-          </div>
-          <div class="Left-Left">
-            patients in Japan: a simple clinical score for evaluating the
-          </div>
-          <div class="Left-Left">
-            need for hospitalization. Epidemiol Infect 2021
-          </div> -->
+          <br />
+          <p class="center">該当する重症化リスク・重度（レ点）</p>
+          <table class="half lineThick step-2" border="1">
+            <tr>
+              <td>{{ riskA[0] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[1] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[2] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[3] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[4] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[5] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[6] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[7] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[8] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[9] }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{{ riskA[10] }}</td>
+              <td></td>
+            </tr>
+          </table>
         </td>
       </tr>
     </table>
-    <div class="h_S"></div>
+    <br />
     <hr />
     <!-- Foot -->
     <p>
@@ -218,12 +233,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { riskA, riskB } from "@/store/questionnaire.model";
 
 export default defineComponent({
-  name: "PrintView",
-  setup() {
-    console.log(window.devicePixelRatio);
-  },
+  name: "PrintBu2",
   props: {
     age: {
       type: Number,
@@ -254,9 +267,15 @@ export default defineComponent({
       default: null,
     },
   },
+  setup() {
+    return {
+      riskA,
+      riskB,
+    };
+  },
 });
 </script>
 
 <style scoped>
-@import "@/css/print_1024px.css";
+@import "@/css/print_1024px";
 </style>

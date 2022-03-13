@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <div class="fs-3 p-2 title">
+    <div class="fs-4 p-2 title">
       <div>{{ title[0] }}</div>
       <div>{{ title[1] }}</div>
     </div>
     <div class="msg fs-5">
       <div class="row p-1">
         <div class="col-2">
-          <div class="text-center">特徴</div>
+          <div class="text-center fs-6">特徴</div>
         </div>
-        <div class="col-10">
+        <div class="col-10 fs-6">
           {{ msg[0] }}
         </div>
       </div>
@@ -43,11 +43,14 @@ import router from "@/router";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "TitleInfv2",
+  name: "TitleInformation2",
   setup() {
     const onclick = () => {
-      window.location.href =
-        "https://forms.office.com/Pages/ResponsePage.aspx?id=uDKHwHaraE2cVKdNIWbiGjagFg6-k9hEl_quC62v_dNUM1BXN1BJRTFWQUw4WU9RMkpZUEhBRUhPOS4u";
+      router.push({
+        name: "InputForm2",
+      });
+      // window.location.href =
+      //   "https://forms.office.com/Pages/ResponsePage.aspx?id=uDKHwHaraE2cVKdNIWbiGjagFg6-k9hEl_quC62v_dNUM1BXN1BJRTFWQUw4WU9RMkpZUEhBRUhPOS4u";
     };
     const head = [
       "あま市・大治町医療機関の患者",
