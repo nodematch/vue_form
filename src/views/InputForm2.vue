@@ -198,8 +198,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/css/bootstrap.min.css";
-
 .head {
   background-color: rgb(255, 71, 108);
 }

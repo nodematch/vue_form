@@ -1,24 +1,23 @@
 <template>
-  <!-- <header-component /> -->
-  <router-view />
+  <div>
+    <header-component />
+    <router-view />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-// import HeaderComponent from "@/components/Header.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 
 export default defineComponent({
-  // components: {
-  //   HeaderComponent,
-  // },
+  components: {
+    HeaderComponent,
+  },
 });
 </script>
 
 <style>
-/* #app {
-  padding: 0mm;
-  margin: 0mm;
-} */
+@import "../src/css/originalColor.css";
 @page {
   size: A4 portrait;
   margin: 0mm;

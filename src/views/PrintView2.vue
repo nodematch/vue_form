@@ -161,8 +161,8 @@
 </template>
 
 <script lang="ts">
-import { resultScreenData, multiCheckData } from "@/store/questionnaire";
-import { defineComponent, ref } from "vue";
+import { resultScreenData } from "@/store/questionnaire";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "PrintView2",

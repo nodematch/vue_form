@@ -1,106 +1,69 @@
 <template>
   <div class="container">
-    <div class="m-1">
-      <div class="text-center fs-4">{{ head[0] }}</div>
-      <div class="text-center fs-4">{{ head[1] }}</div>
-      <div class="text-end fs-6">{{ head[2] }}</div>
-    </div>
-    <div class="fs-4 p-2 title">
-      <div>{{ title[0] }}</div>
-      <div>{{ title[1] }}</div>
-    </div>
-    <div class="msg fs-5">
-      <div class="row p-1">
-        <div class="col-2">
-          <div class="text-center fs-6">特徴</div>
-        </div>
-        <div class="col-10 fs-6">
-          {{ msg[0] }}
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-2">
-          <div class="text-center">対象</div>
-        </div>
-        <div class="col-10">
-          {{ msg[1] }}
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-2">
-          <div class="text-center fs-6">参考文献</div>
-        </div>
-        <div class="col-10 fs-6">
-          {{ msg[2] }}
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        <button class="btn btn-success m-2" @click="go2">
-          day0-2 （ ～発症３日目）「早期治療薬スクリーニング（STEP2）」へ進む
-        </button>
-      </div>
-      <div class="col-auto">
-        <button class="btn btn-primary m-2" @click="go1">
-          day3～7（発症4～8日目）「酸素需要予測スクリーニング（STEP1）」へ進む
-        </button>
-      </div>
-    </div>
+    <accordion-version-1 :contents="accordionContent" :headText="headText" />
+    <button-component :contents="buttonContent" />
   </div>
 </template>
 
 <script lang="ts">
 import router from "@/router";
 import { defineComponent } from "vue";
+import AccordionVersion1 from "../components/AccordionVersion1.vue";
+import ButtonComponent from "../components/ButtonComponent.vue";
 
 export default defineComponent({
   name: "TitleInformation1",
+  components: {
+    AccordionVersion1,
+    ButtonComponent,
+  },
   setup() {
-    if (location.search == "?id=printv2") {
-      router.push({
-        name: "PrintBu2",
-      });
-    }
-    const go1 = () => {
-      router.push({
-        name: "InputForm1",
-      });
-    };
-    const go2 = () => {
-      router.push({
-        name: "TitleInformation2",
-      });
-    };
-    const head = [
-      "あま市・大治町医療機関の患者",
-      "発症早期における治療選択フロー第１版",
-      "あま市民病院ICT作成（2022年3月7日）",
+    const headText = "<p>STEP1</p><p>COVID-19 酸素需要予測のスクリーニング</p>"
+    const accordionContent = [
+      {
+        title: "<b>対象</b>",
+        msg: "<b>day3～7の外来患者（発症4～8日目の患者。発症日をday0とする）</b>",
+        isShow: "show",
+        idn:"aa",
+      },
+      {
+        title: "特徴",
+        msg: "SpO2値を使わないため、電話診療でも、判定可能。高齢者は感度高く、若年者は特異度を高く、カットオフ値設定。",
+        isShow: "show",
+        idn: "bb",
+      },
+      {
+        title: "参考文献",
+        msg: "Yamada G,et al. Predicting respiratory failure for COVID-19 :a simple clinical score for evaluating the need for hospitalization. Epidemiol Infect 2021",
+        isShow: "hide",
+        idn: "cc",
+      },
     ];
-    const title = ["STEP 1", "COVID-19 酸素需要予測のスクリーニング"];
-    const msg = [
-      "SpO2値を使わないため、電話診療でも、判定可能。高齢者は感度高く、若年者は特異度を高く、カットオフ値設定。",
-      "day3～7（発症4～8日目）の外来患者（発症日をday0とする）",
-      "Yamada G,et al. Predicting respiratory failure for COVID-19 :a simple clinical score for evaluating the need for hospitalization. Epidemiol Infect 2021",
-    ];
+    const buttonContent = [
+      {
+        text: "「酸素需要予測スクリーニング」へ進む",
+        func: () => {
+          router.push({
+            name: "InputForm1",
+          });
+        },
+        color: "btn-primary"
+      },
+      {
+        text: "day0-2 （ ～発症3日目）の患者 : 「早期治療薬スクリーニング（STEP2）」へ進む",
+        func: () => {
+          router.push({
+            name: "TitleInformation2",
+          });
+        },
+        color: "btn-success"
+      },
+    ]
     return {
-      go1,
-      go2,
-      head,
-      title,
-      msg,
+      accordionContent,
+      headText,
+      buttonContent,
     };
   },
 });
 </script>
-
-<style scoped>
-@import "@/css/bootstrap.min.css";
-
-.title {
-  background-color: rgb(156, 156, 240);
-}
-.msg {
-  background-color: rgb(194, 211, 248);
-}
-</style>

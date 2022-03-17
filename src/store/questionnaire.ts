@@ -3,7 +3,6 @@ import {
   MultiCheck,
   ResultScreen,
   SingleCheck,
-  Succession,
 } from "./questionnaire.model";
 
 // SINGLE

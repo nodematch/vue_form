@@ -1,12 +1,14 @@
 <template>
-  <br />
-  <div class="p-1 fs-4 text-center color1">{{ title }}</div>
-  <div class="fs-6 text-end color1">{{ text1 }}</div>
-  <div class="color2 row fs-6" v-for="item in items" :key="item[0]">
-    <div class="col-2 p-1 pb-2" v-html="item[0]"></div>
-    <div class="col-10 p-1 pb-2" v-html="item[1]"></div>
+  <div>
+    <br />
+    <div class="p-1 fs-4 text-center color1">{{ title }}</div>
+    <div class="fs-6 text-end color1">{{ text1 }}</div>
+    <div class="color2 row fs-6" v-for="item in items" :key="item[0]">
+      <div class="col-2 p-1 pb-2" v-html="item[0]"></div>
+      <div class="col-10 p-1 pb-2" v-html="item[1]"></div>
+    </div>
+    <br />
   </div>
-  <br />
 </template>
 
 <script>
@@ -88,8 +90,6 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-@import "@/css/bootstrap.min.css";
-
 .color1 {
   background-color: rgb(187, 187, 187);
 }

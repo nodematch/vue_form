@@ -2,13 +2,13 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
 const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: "/",
-  //   name: "home",
-  //   component: HomeView,
-  // },
   {
     path: "/",
+    name: "home",
+    component: HomeView,
+  },
+  {
+    path: "/titleinformation1",
     name: "TitleInformation1",
     component: () => import("../views/TitleInformation1.vue"),
   },
@@ -35,15 +35,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/PrintView2.vue"),
   },
   {
-    path: "/titleInfv2",
+    path: "/titleinformation2",
     name: "TitleInformation2",
     props: false,
     component: () => import("../views/TitleInformation2.vue"),
-  },
-  {
-    path: "/printBu2",
-    name: "PrintBu2",
-    component: () => import("../views/PrintBu2.vue"),
   },
   // {
   //   path: "/:catchAll(.#)",

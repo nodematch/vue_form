@@ -260,7 +260,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/css/bootstrap.min.css";
 label,
 input {
   font-size: 1.8em;

@@ -135,17 +135,17 @@ table.step-2b td:nth-child(even){
 .textArea {
   height: 24mm !important;
 }
-div.row {
+div.rowhor {
   display: table;
   table-layout: fixed;
   width: 100%;
   height: 40px;
 }
-div.row div {
+div.rowhor div {
   text-indent: 16px;
   text-align: left;
   display: table-cell;
-  height: 40px
+  padding-top: 5px;
 }
 table.layout {
   width: 100%;

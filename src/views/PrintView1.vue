@@ -40,7 +40,7 @@
           <p>患者氏名</p>
         </td>
         <td>
-          <div class="row">
+          <div class="rowhor">
             <div>年齢</div>
             <div class="fontL">{{ age }}</div>
             <div>性別</div>
