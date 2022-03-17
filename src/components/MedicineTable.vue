@@ -1,13 +1,21 @@
 <template>
-  <div>
-    <br />
-    <div class="p-1 fs-4 text-center color1">{{ title }}</div>
-    <div class="fs-6 text-end color1">{{ text1 }}</div>
-    <div class="color2 row fs-6" v-for="item in items" :key="item[0]">
-      <div class="col-2 p-1 pb-2" v-html="item[0]"></div>
-      <div class="col-10 p-1 pb-2" v-html="item[1]"></div>
-    </div>
-    <br />
+  <div class="container my-4">
+    <table class="table table-bordered border-dark">
+      <thead class="color1">
+        <tr>
+          <td colspan="2">
+            <div class="fs-4 text-center">{{ title }}</div>
+            <div class="fs-6 text-end">{{ text1 }}</div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="fs-6" v-for="item in items" :key="item[0]">
+          <th class="w-25" v-html="item[0]"></th>
+          <td class="w-75" v-html="item[1]"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
