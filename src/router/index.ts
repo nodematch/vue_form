@@ -40,11 +40,11 @@ const routes: Array<RouteRecordRaw> = [
     props: false,
     component: () => import("../views/TitleInformation2.vue"),
   },
-  // {
-  //   path: "/:catchAll(.#)",
-  //   name: "notFound",
-  //   component: () => import("../views/NotFound.vue"),
-  // },
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: () => import("../views/NotFound.vue"),
+  },
 ];
 
 const router = createRouter({

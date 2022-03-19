@@ -1,44 +1,21 @@
 <template>
   <div class="container">
-    <div class="text-center pt-2 pb-2 fs-3 head">
+    <div class="text-center py-2 fs-3 redA">
       早期治療薬のスクリーニング
     </div>
     <!-- SingleSelectQuestion -->
     <div v-if="show.category == 0" class="text-start">
       <div class="fs-3 p-2 mb-4" v-html="singleQ[show.index].title"></div>
       <div class="fs-6 p-3" v-html="singleQ[show.index].message"></div>
-      <div
-        class="p-1 row fs-6"
-        v-for="item in singleQ[show.index].choices"
-        :key="item.text"
-      >
-        <div class="col-auto">
-          <input
-            type="radio"
-            name="single"
-            :value="item.id"
-            :id="item.text"
-            v-model="answerSingle[show.index]"
-            class="form-check-input"
-          />
-        </div>
-        <div class="col-auto">
-          <label
-            :for="item.text"
-            class="form-check-label"
-            v-html="item.text"
-          ></label>
-        </div>
-      </div>
+      <form  class="form-check fs-6"  v-for="item in singleQ[show.index].choices"  :key="item.text">
+        <input type="radio" name="single" :value="item.id" :id="item.text" v-model="answerSingle[show.index]" class="form-check-input" />
+        <label :for="item.text" class="form-check-label" v-html="item.text"></label>
+      </form>
       <div v-if="show.index == 7 || show.index == 10" class="mt-6">
         <medicine-table />
       </div>
       <div class="text-center">
-        <button
-          class="btn btn-primary m-4 fs-4"
-          @click="next"
-          v-bind:disabled="answerSingle[show.index] == -1"
-        >
+        <button class="btn btn-primary m-4 fs-4" @click="next" v-bind:disabled="answerSingle[show.index] == -1">
           &emsp;&emsp;進む&emsp;&emsp;
         </button>
       </div>
@@ -47,29 +24,10 @@
     <div v-if="show.category == 1">
       <div class="fs-3 p-2 mb-4" v-html="multiQ[show.index].title"></div>
       <div class="fs-6 p-3" v-html="multiQ[show.index].message"></div>
-      <div
-        class="p-1 row fs-6"
-        v-for="item in multiQ[show.index].choices"
-        :key="item.text"
-      >
-        <div class="col-auto">
-          <input
-            type="checkbox"
-            name="multi"
-            :value="item.id"
-            :id="item.text"
-            v-model="answerMulti[show.index]"
-            class="form-check-input"
-          />
-        </div>
-        <div class="col-auto">
-          <label
-            :for="item.text"
-            class="form-check-label"
-            v-html="item.text"
-          ></label>
-        </div>
-      </div>
+      <form class="fs-6 form-check" v-for="item in multiQ[show.index].choices" :key="item.text">
+        <input class="form-check-input" type="checkbox" name="multi" :value="item.id" :id="item.text" v-model="answerMulti[show.index]" />
+        <label class="form-check-label" :for="item.text" v-html="item.text"></label>
+      </form>
       <div class="text-center">
         <button class="btn btn-primary m-4 fs-4" @click="next">
           &emsp;&emsp;進む&emsp;&emsp;
@@ -85,7 +43,7 @@
         <p class="fs-5 text-center">あま市民病院に投薬依頼する場合</p>
         <div class="text-center">
           <button class="btn btn-danger m-4 fs-5" @click="settle">
-            &emsp;&emsp;FAX印刷ページへ&emsp;&emsp;
+            FAX印刷ページへ
           </button>
         </div>
         <p class="fs-5 text-center">依頼しない場合</p>
@@ -197,8 +155,3 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.head {
-  background-color: rgb(255, 71, 108);
-}
-</style>

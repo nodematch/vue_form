@@ -1,166 +1,82 @@
 <template>
   <div class="container">
-    <div class="text-center m-3 fs-1">
-      COVID-19 酸素需要予測のスクリーニング
-    </div>
+    <div class="text-center m-3 fs-2">COVID-19 酸素需要予測のスクリーニング</div>
     <div class="text-center m-3 fs-2">STEP1 入力フォーム</div>
-    <div class="row mb-2 p-2 color_1 align-items-center">
-      <div class="col-6">
-        <label for="age">年齢</label>
-      </div>
-      <div class="col-6">
-        <input
-          type="number"
-          maxlength="3"
-          v-model.number="age"
-          @change="setAge"
-          max="150"
-          min="18"
-          class="form-control"
-        />
-      </div>
-    </div>
-    <div class="row mb-2 p-2 color_1 align-items-center">
-      <div class="col-6">
-        <label>性別</label>
-      </div>
-      <div class="col-1">
-        <input
-          type="radio"
-          name="sex"
-          id="female"
-          value="0"
-          v-model="sex"
-          class="form-check-input"
-        />
-      </div>
-      <div class="col-2">
-        <label for="female" class="form-check-label">女</label>
-      </div>
-      <div class="col-1">
-        <input
-          type="radio"
-          name="sex"
-          id="male"
-          value="1"
-          v-model="sex"
-          class="form-check-input"
-        />
-      </div>
-      <div class="col-2">
-        <label for="male" class="form-check-label">男</label>
-      </div>
-    </div>
-    <div class="row mb-2 p-2 color_1 align-items-center">
-      <div class="col-6">
-        <label for="age">身長</label>
-      </div>
-      <div class="col-6">
-        <input
-          type="number"
-          maxlength="3"
-          v-model.number="height"
-          max="299"
-          min="0"
-          @change="setBMIs"
-          class="form-control"
-        />
-      </div>
-    </div>
-    <div class="row mb-2 p-2 color_1 align-items-center">
-      <div class="col-6">
-        <label for="age">体重</label>
-      </div>
-      <div class="col-6">
-        <input
-          type="number"
-          maxlength="3"
-          v-model.number="weight"
-          max="199"
-          min="0"
-          @change="setBMIs"
-          class="form-control"
-        />
-      </div>
-    </div>
-    <div v-for="(ill, idx) in ills" :key="ill.name">
-      <div
-        class="row mb-2 p-2 color_2 align-items-center"
-        v-if="ill.isShow(ageType)"
-      >
+    <form>
+      <!-- No1 -->
+      <div class="row p-2 justify-content-cente greyA">
+        <label for="age" class="col-6 col-form-label text-center fs-3">年齢</label>
         <div class="col-6">
-          <label>{{ ill.name }}</label>
-        </div>
-        <div class="col-1">
-          <input
-            type="radio"
-            :name="ill.name"
-            value="1"
-            :id="'y' + ill.name"
-            v-model.number="illVal[idx]"
-            class="form-check-input"
-          />
-        </div>
-        <div class="col-2">
-          <label :for="'y' + ill.name" class="form-check-label">有</label>
-        </div>
-        <div class="col-1">
-          <input
-            type="radio"
-            :name="ill.name"
-            value="0"
-            :id="'n' + ill.name"
-            v-model.number="illVal[idx]"
-            class="form-check-input"
-          />
-        </div>
-        <div class="col-2">
-          <label :for="'n' + ill.name" class="form-check-label">無</label>
+          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="age" @change="setAgeType"  max="150"  min="18" id="age" />
         </div>
       </div>
-    </div>
-    <div class="text-center">
-      <button class="btn btn-primary m-4 fs-1" @click="onclick">完了</button>
-    </div>
+      <!-- No2 -->
+      <div class="row p-2 justify-content-center greyA">
+        <label class="col-6 col-form-label text-center fs-3">性別</label>
+        <div class="form-check col-3">
+          <input class="form-check-input fs-3" type="radio" name="sex" id="female" value="0" v-model="sex" />
+          <label class="form-check-label fs-3" for="female">女</label>
+        </div>
+        <div class="form-check col-3">
+          <input class="form-check-input fs-3" type="radio" name="sex" id="male" value="1" v-model="sex" />
+          <label class="form-check-label fs-3" for="male">男</label>
+        </div>
+      </div>
+      <!-- No3 -->
+      <div class="row p-2 justify-content-center greyA">
+        <label for="height" class="col-6 col-form-label text-center fs-3">身長</label>
+        <div class="col-6">
+          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="height" max="299" min="0" id="height">
+        </div>
+      </div>
+      <!-- No4 -->
+      <div class="row p-2 justify-content-center greyA">
+        <label for="weight" class="col-6 col-form-label text-center fs-3">体重</label>
+        <div class="col-6">
+          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="weight" max="199" min="0" id="weight">
+        </div>
+      </div>
+      <!-- No5- -->
+      <div v-for="(item, idx) in risks" :key="item.name">
+        <div class="row p-2 greyB justify-content-center" v-if="item.isShow(ageType)">
+          <label class="col-6 col-form-label text-center fs-3">{{ item.name }}</label>
+          <div class="form-check col-3">
+            <input class="form-check-input fs-3" type="radio" :name="item.name" value="1" :id="'y' + item.name" v-model.number="riskVals[idx]" />
+            <label class="form-check-label fs-3" :for="'y' + item.name">有</label>
+          </div>
+          <div class="form-check col-3">
+            <input class="form-check-input fs-3" type="radio" :name="item.name" value="0" :id="'n' + item.name" v-model.number="riskVals[idx]" />
+            <label class="form-check-label fs-3" :for="'n' + item.name">無</label>
+          </div>
+        </div>
+      </div>
+    </form>
+    <br />
+    <button-component :contents="buttonContent" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { personData } from "@/store/ill.model";
-import { ills } from "@/store/ill.data";
+import { Calculation, risks } from "@/store/riskForm1"
 import errCheck from "@/store/errCheck";
 import router from "@/router/index";
+import ButtonComponent from "@/components/ButtonComponent.vue"
 
 export default defineComponent({
   name: "InputForm1",
+  components: {
+    ButtonComponent,
+  },
   setup() {
-    let pd = new personData({ age: 18, sex: 0, height: 160, weight: 50 }, ills);
     const age = ref(0);
-    const sex = ref(pd.sex);
+    const sex = ref(0);
     const height = ref(0);
     const weight = ref(0);
-    const illVal = ref(pd.illValue);
-    const ageType = ref(pd.ageType);
-    const bmi = () => {
-      return Math.floor(pd.bmi * 10) / 10;
-    };
-    const setAge = () => {
-      pd.age = age.value;
-      pd.setAgeType();
-      ageType.value = pd.ageType;
-    };
-    const setBMIs = () => {
-      pd.weight = weight.value;
-      pd.height = height.value;
-      pd.setBMI();
-    };
-    const setOtherInf = () => {
-      pd.sex = sex.value;
-      pd.illValue = illVal.value;
-    };
+    const riskVals = ref([0,0,0,0,0,0,0,0,0,0]);
+    const ageType = ref(0);
     const resultMsg = ref("result message here");
-    const isDone = ref(false);
+    const setAgeType = () => { ageType.value = Calculation.AgeType(age.value); };
     const onclick = () => {
       let chk = errCheck.numbers([
         { n: age.value, min: 18, max: 150, name: "age" },
@@ -171,103 +87,76 @@ export default defineComponent({
         resultMsg.value = chk.msg;
         alert(resultMsg.value);
       } else {
-        setAge();
-        setBMIs();
-        setOtherInf();
-        pd.calcPoint(ills);
-        console.log("bmi = " + pd.bmi + " ,score = " + pd.score);
+        let score = Calculation.Point(risks, {age: age.value, ageType: ageType.value, height: height.value, weight: weight.value, sex: sex.value, riskVals: riskVals.value })
+        console.log(score);
         var result;
-        if (!pd.judge()) {
-          resultMsg.value =
-            "低いスコア(" + pd.score + ") : 次の入力フォームへ進んで下さい";
+        if (!Calculation.judge(ageType.value, score)) {
+          resultMsg.value = "低いスコア(" + score + ") : 次の入力フォームへ進んで下さい";
           result = window.confirm(resultMsg.value);
           if (result) {
-            console.log("Y");
-            router.push({
-              name: "TitleInformation2",
-            });
-          } else {
-            console.log("N");
+            router.push({ name: "TitleInformation2" });
           }
         } else {
-          resultMsg.value =
-            "高いスコア(" +
-            pd.score +
-            ") : 表示されるページの印刷、およびFaxをお願いします";
+          resultMsg.value = "高いスコア(" + score + ") : 表示されるページの印刷、およびFaxをお願いします";
           result = window.confirm(resultMsg.value);
           if (result) {
-            console.log("Y");
-            clickPrint();
-          } else {
-            console.log("N");
+            Print(score);
           }
         }
       }
     };
-    const clickPrint = () => {
-      let sexStr: string = pd.sex == 1 ? "男" : "女";
-      let ills_: string[] = new Array<string>(illVal.value.length);
-      for (let i = 0; i < ills.length; i++) {
-        if (!ills[i].isShow(pd.ageType)) {
-          ills_[i] = "―";
-        } else if (illVal.value[i] == 1) {
-          ills_[i] = "&#9675";
+    const Print = (score: number) => {
+      let sexStr: string = sex.value == 1 ? "男" : "女";
+      let risks_: string[] = new Array<string>(riskVals.value.length);
+      for (let i = 0; i < risks.length; i++) {
+        if (!risks[i].isShow(ageType.value)) {
+          risks_[i] = "―";
+        } else if (riskVals.value[i] == 1) {
+          risks_[i] = "&#9675";
         } else {
-          ills_[i] = "";
+          risks_[i] = "";
         }
       }
-      let ageType_ = "18-39";
-      let cutoff_ = 6;
-      if (pd.ageType == 1) {
-        ageType_ = "40-64";
-        cutoff_ = 5;
-      } else if (pd.ageType == 2) {
-        ageType_ = "65-";
-        cutoff_ = 3;
+      let _ageType = "18-39";
+      let _cutoff = 6;
+      if (ageType.value == 1) {
+        _ageType = "40-64";
+        _cutoff = 5;
+      } else if (ageType.value == 2) {
+        _ageType = "65-";
+        _cutoff = 3;
       }
       router.push({
         name: "PrintView1",
         params: {
-          age: pd.age,
+          age: age.value,
           sex: sexStr,
-          ills: ills_,
-          bmi: Math.floor(pd.bmi * 10) / 10,
-          score: pd.score.toString(),
-          ageType: ageType_,
-          cutoff: cutoff_,
+          ills: risks_,
+          bmi:  Math.floor(Calculation.BMI(height.value, weight.value) * 10) / 10,
+          score: score.toString(),
+          ageType: _ageType,
+          cutoff: _cutoff,
         },
       });
     };
+    const buttonContent = [{
+      text: "完了",
+      func: onclick,
+      color: "btn-primary fs-2"
+    }];
 
     return {
-      onclick,
-      setAge,
-      setBMIs,
       age,
       sex,
       height,
       weight,
       resultMsg,
-      isDone,
-      ills,
       ageType,
-      illVal,
-      bmi,
-      clickPrint,
+      riskVals,
+      buttonContent,
+      setAgeType,
+      risks,
     };
   },
 });
 </script>
-
-<style scoped>
-label,
-input {
-  font-size: 1.8em;
-}
-.color_1 {
-  background-color: rgb(235, 235, 235);
-}
-.color_2 {
-  background-color: lightcyan;
-}
-</style>
