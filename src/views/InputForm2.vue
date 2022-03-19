@@ -16,7 +16,7 @@
       </div>
       <div class="text-center">
         <button class="btn btn-primary m-4 fs-4" @click="next" v-bind:disabled="answerSingle[show.index] == -1">
-          &emsp;&emsp;進む&emsp;&emsp;
+          &emsp;進む&emsp;
         </button>
       </div>
     </div>

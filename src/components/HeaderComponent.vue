@@ -2,13 +2,13 @@
   <nav class="navbar greenA">
     <div class="container-fluid">
       <h1 class="navbar-brand fs-4">あま市民病院ICT</h1>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navh" aria-controls="navh" aria-expanded="false" aria-label="メニュー">
-        メニュー
-      </button>
-      <div class="collapse navbar-collapse" id="navh">
-        <ul class="navbar-nav text-center fs-5 mb-2">
-          <li class="nav-item">
-            <router-link to="/" class="nav-link active" aria-current="page" href="#">Top</router-link>
+      <div class="nav-item dropdown">
+        <button class="btn btn-secondary dropdown-toggle nav-link text-dark bg-light" type="button" id="navh" data-bs-toggle="dropdown">
+          メニュー
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end nav-item" aria-labelledby="navh">
+          <li>
+            <router-link to="/" class="dropdown-item" id="toTop">Top</router-link>
           </li>
         </ul>
       </div>
@@ -17,10 +17,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import router from "@/router";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "HeaderComponent",
+  setup() {
+    const collapseSt = ref("collaspe")
+    const closeNavBar = () => {
+      collapseSt.value = "collapse"
+    }
+    return {
+      collapseSt,
+      closeNavBar,
+    }
+    // const closeNavBar = () => {
+    //   var collapse = document.getElementById("toTop");
+
+    // }
+    // }]
+  }
 });
 </script>
 <style scoped>

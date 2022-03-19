@@ -77,7 +77,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
   },
   //index=4
   {
-    title: "熱や倦怠感の経過を、お聞きします。(day4-7,light)",
+    title: "熱や倦怠感の経過を、お聞きします。(day4-7,mild)",
     message:
       "熱や倦怠感は、解熱薬服用後でなくとも、明らかに良くなってきていますか？",
     choices: [
@@ -94,7 +94,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
   },
   //index=5
   {
-    title: "<b>本日の</b>SpO2を確認します(day4-7,heavy)",
+    title: "<b>本日の</b>SpO2を確認します(day4-7,moderate~)",
     message:
       "<b>手が冷たかったり、マスクをしていると、実際より低い数値になることがあります。</b>マニュキュアやネイルアートをしている場合は、正しく測定できません。",
     choices: [
@@ -112,7 +112,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
   //index=6
   {
     title:
-      "腎機能を、お聞きします。(day0-3,light)<br>3か月以内の腎機能を教えてください。ただし、進行性の腎障害の懸念がなければ、6か月以内の腎機能でかまいません。",
+      "腎機能を、お聞きします。(day0-3,mild)<br>3か月以内の腎機能を教えてください。ただし、進行性の腎障害の懸念がなければ、6か月以内の腎機能でかまいません。",
     message: "eGFR≧30 と確認できますか？",
     choices: [
       { id: 0, text: "eGFR≧30と確認できる" },
@@ -128,7 +128,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
   },
   //index=7
   {
-    title: "服薬中のすべての薬について、お聞きします(day0-3,light)",
+    title: "服薬中のすべての薬について、お聞きします(day0-3,mild)",
     message:
       "<b>すべて</b>、パキロビッドパックの併用禁忌薬ではないと、確認ができますか？",
     choices: [
@@ -145,7 +145,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
   },
   //index=8
   {
-    title: "<b>本日の</b>SpO2を確認します(day0-3),heavy",
+    title: "<b>本日の</b>SpO2を確認します(day0-3),moderate~",
     message:
       "<b>手が冷たかったり、マスクをしていると、実際より低い数値になることがあります。</b>マニュキュアやネイルアートをしている場合は、正しく測定できません。",
     choices: [
@@ -163,7 +163,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
   //index=9
   {
     title:
-      "腎機能を、お聞きします。(day0-3,heavy)<br>3か月以内の腎機能を教えてください。ただし、進行性の腎障害の懸念がなければ、6か月以内の腎機能でかまいません。",
+      "腎機能を、お聞きします。(day0-3,moderate~)<br>3か月以内の腎機能を教えてください。ただし、進行性の腎障害の懸念がなければ、6か月以内の腎機能でかまいません。",
     message: "eGFR≧30 と確認できますか？",
     choices: [
       { id: 0, text: "eGFR≧30と確認できる" },
@@ -179,7 +179,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
   },
   //index=10
   {
-    title: "服薬中のすべての薬について、お聞きします(day0-3,heavy)",
+    title: "服薬中のすべての薬について、お聞きします(day0-3,moderate~)",
     message:
       "<b>すべて</b>、パキロビッドパックの併用禁忌薬ではないと、確認ができますか？",
     choices: [
