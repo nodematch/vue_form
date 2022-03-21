@@ -1,17 +1,18 @@
 <template>
   <div class="container">
     <div class="text-center m-3 fs-2">COVID-19 酸素需要予測のスクリーニング</div>
-    <div class="text-center m-3 fs-2">STEP1 入力フォーム</div>
+    <div class="text-center m-3 fs-6"><b>day3-7</b>(発症日はday0）かつ 18才以上</div>
+    <div class="text-center m-3 fs-6">STEP1 入力フォーム</div>
     <form>
       <!-- No1 -->
-      <div class="row p-2 justify-content-cente greyA">
+      <div class="row p-1 justify-content-center greyA">
         <label for="age" class="col-6 col-form-label text-center fs-3">年齢</label>
         <div class="col-6">
           <input type="number" class="form-control fs-3" maxlength="3" v-model.number="age" @change="setAgeType"  max="150"  min="18" id="age" />
         </div>
       </div>
       <!-- No2 -->
-      <div class="row p-2 justify-content-center greyA">
+      <div class="row p-1 justify-content-center greyA">
         <label class="col-6 col-form-label text-center fs-3">性別</label>
         <div class="form-check col-3">
           <input class="form-check-input fs-3" type="radio" name="sex" id="female" value="0" v-model="sex" />
@@ -23,14 +24,14 @@
         </div>
       </div>
       <!-- No3 -->
-      <div class="row p-2 justify-content-center greyA">
+      <div class="row p-1 justify-content-center greyA">
         <label for="height" class="col-6 col-form-label text-center fs-3">身長</label>
         <div class="col-6">
           <input type="number" class="form-control fs-3" maxlength="3" v-model.number="height" max="299" min="0" id="height">
         </div>
       </div>
       <!-- No4 -->
-      <div class="row p-2 justify-content-center greyA">
+      <div class="row p-1 justify-content-center greyA">
         <label for="weight" class="col-6 col-form-label text-center fs-3">体重</label>
         <div class="col-6">
           <input type="number" class="form-control fs-3" maxlength="3" v-model.number="weight" max="199" min="0" id="weight">
@@ -38,7 +39,7 @@
       </div>
       <!-- No5- -->
       <div v-for="(item, idx) in risks" :key="item.name">
-        <div class="row p-2 greyB justify-content-center" v-if="item.isShow(ageType)">
+        <div class="row p-1 greyB justify-content-center" v-if="item.isShow(ageType)">
           <label class="col-6 col-form-label text-center fs-3">{{ item.name }}</label>
           <div class="form-check col-3">
             <input class="form-check-input fs-3" type="radio" :name="item.name" value="1" :id="'y' + item.name" v-model.number="riskVals[idx]" />
@@ -89,7 +90,7 @@ export default defineComponent({
       } else {
         let score = Calculation.Point(risks, {age: age.value, ageType: ageType.value, height: height.value, weight: weight.value, sex: sex.value, riskVals: riskVals.value })
         console.log(score);
-        var result;
+        let result;
         if (!Calculation.judge(ageType.value, score)) {
           resultMsg.value = "低いスコア(" + score + ") : 次の入力フォームへ進んで下さい";
           result = window.confirm(resultMsg.value);

@@ -1,5 +1,6 @@
 .blueA {
-  background-color: rgb(156, 156, 240);
+  background-color: rgb(156, 156, 240) !important;
+  border-color: rgb(156, 156, 240) !important;
 }
 .blueB {
   background-color: rgb(194, 211, 248);

@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts">
-import router from "@/router";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({

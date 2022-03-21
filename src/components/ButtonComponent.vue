@@ -1,14 +1,14 @@
 <template>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center my-1">
     <div class="col-auto" v-for="item in contents" :key="item.text">
-      <button v-bind:class="'btn m-2 ' + item.color" @click="item.func">
+      <button v-bind:class="'btn m-1 ' + item.color" @click="item.func">
         {{ item.text }}
       </button>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from "vue"
+import { defineComponent, PropType } from "vue";
 
 interface Btn {
   text: string,

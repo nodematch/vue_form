@@ -40,6 +40,11 @@ const routes: Array<RouteRecordRaw> = [
     props: false,
     component: () => import("../views/TitleInformation2.vue"),
   },
+  // {
+  //   path: "/testview",
+  //   name: "TestView",
+  //   component: () => import("../views/TestView.vue"),
+  // },
   {
     path: "/:catchAll(.*)",
     name: "NotFound",

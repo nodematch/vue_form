@@ -18,11 +18,11 @@ export default defineComponent({
     ButtonComponent,
   },
   setup() {
-    const headText = "<p>STEP 2</p><p>重症化リスク(+) COVID-19早期治療薬スクリーニング</p>";
+    const headText = "<p>STEP 2</p><p>重症化リスク(+) 患者の「COVID-19早期治療薬スクリーニング」</p>";
     const accordionContent = [
       {
         title: "<b>対象</b>",
-        msg: "<b>day 7 以内の外来患者（発症から8日目以内。発症日をday0とする）。重症化リスク・発症日・SpO2が必要。</b>",
+        msg: "<b>12才以上 かつ day0-7の外来患者。重症化リスク・発症日・SpO2が必要。（発症日はday0）</b>",
         isShow: "show",
         idn:"aa",
       },

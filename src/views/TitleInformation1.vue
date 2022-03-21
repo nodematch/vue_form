@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <accordion-version-1 :contents="accordionContent" :headText="headText" />
-    <button-component :contents="buttonContent" />
+    <div class="fs-6"><b>対象患者（18才以上 かつ day3～7）:</b></div>
+    <button-component :contents="btn0" />
+    <div class="fs-6 mt-4">対象以外の患者（ただし、day0~7 かつ 12歳以上）:</div>
+    <button-component :contents="btn1" />
   </div>
 </template>
 
@@ -18,11 +21,11 @@ export default defineComponent({
     ButtonComponent,
   },
   setup() {
-    const headText = "<p>STEP1</p><p>COVID-19 酸素需要予測のスクリーニング</p>"
+    const headText = "<p>STEP1</p><p>COVID-19「 酸素需要予測のスクリーニング」</p>"
     const accordionContent = [
       {
-        title: "<b>対象</b>",
-        msg: "<b>day3～7の外来患者（発症4～8日目の患者。発症日をday0とする）</b>",
+        title: "対象",
+        msg: "18才以上 かつ day3～7の外来患者 (発症日はday0）",
         isShow: "show",
         idn:"aa",
       },
@@ -39,18 +42,20 @@ export default defineComponent({
         idn: "cc",
       },
     ];
-    const buttonContent = [
+    const btn0 = [
       {
-        text: "「酸素需要予測スクリーニング」へ進む",
+        text: "「酸素需要予測スクリーニング（STEP1）」へ進む",
         func: () => {
           router.push({
             name: "InputForm1",
           });
         },
-        color: "btn-primary"
+        color: "blueA",
       },
+    ];
+    const btn1 = [
       {
-        text: "day0-2 （ ～発症3日目）の患者 : 「早期治療薬スクリーニング（STEP2）」へ進む",
+        text: "「早期治療薬スクリーニング（STEP2）」へ進む",
         func: () => {
           router.push({
             name: "TitleInformation2",
@@ -62,7 +67,8 @@ export default defineComponent({
     return {
       accordionContent,
       headText,
-      buttonContent,
+      btn0,
+      btn1,
     };
   },
 });

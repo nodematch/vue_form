@@ -1,7 +1,5 @@
 export default {
-  numbers(
-    array: Array<{ n: number | string; min: number; max: number; name: string }>
-  ): { valid: boolean; msg: string } {
+  numbers( array: Array<{ n: number | string; min: number; max: number; name: string }>): { valid: boolean; msg: string } {
     const result: { valid: boolean; msg: string } = { valid: true, msg: "" };
     array.forEach((el) => {
       if (typeof el.n === "string") {

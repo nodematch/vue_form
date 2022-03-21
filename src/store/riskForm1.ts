@@ -73,6 +73,18 @@ export const Calculation = {
   judge(ageType: number, score: number): boolean {
     return (ageType == 0 && score > 5) || (ageType == 1 && score > 4) || (ageType == 2 && score > 2);
   },
+  checkValue(vs: { n: number | string; min: number; max: number; name: string }): string {
+    let result = "";
+    if(typeof vs.n === "string") {
+      result = "value of " + vs.name + " is invalid";
+    } else {
+      vs.n = vs.n as number;
+      if (vs.n < vs.min || vs.max < vs.n) {
+        result = "value of " + vs.name + " is invalid";
+      }
+    }
+    return result;
+  },
 };
 
 export const risks: RiskData1[] = [
