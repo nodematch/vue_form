@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="text-center m-3 fs-2">COVID-19 酸素需要予測のスクリーニング</div>
+    <div class="text-end fs-6">{{ typeName }}</div>
     <div class="text-center m-3 fs-6"><b>day3-7</b>(発症日はday0）かつ 18才以上</div>
     <div class="text-center m-3 fs-6">STEP1 入力フォーム</div>
     <form>
@@ -70,6 +71,7 @@ export default defineComponent({
     ButtonComponent,
   },
   setup() {
+    const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
     const age = ref(0);
     const sex = ref(0);
     const height = ref(0);
@@ -95,7 +97,7 @@ export default defineComponent({
           resultMsg.value = "低いスコア(" + score + ") : 次の入力フォームへ進んで下さい";
           result = window.confirm(resultMsg.value);
           if (result) {
-            router.push({ name: "TitleInformation2" });
+            router.push({ name: "TitleInformation2", query: {type: typeName}});
           }
         } else {
           resultMsg.value = "高いスコア(" + score + ") : 表示されるページの印刷、およびFaxをお願いします";
@@ -129,6 +131,7 @@ export default defineComponent({
       }
       router.push({
         name: "PrintView1",
+        query: {type: typeName},
         params: {
           age: age.value,
           sex: sexStr,
@@ -157,6 +160,7 @@ export default defineComponent({
       buttonContent,
       setAgeType,
       risks,
+      typeName,
     };
   },
 });

@@ -24,14 +24,15 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.multiCheck, index: 0 };
       }
     },
+    paxlo: false,
   },
   //index=1
   {
     title: "発症からどれくらい経過しているか、お聞きします。",
     message: "day いくつ ですか？<b>（発症日はday 0)</b>",
     choices: [
-      { id: 0, text: "~ day3 （～発症4日目）" },
-      { id: 1, text: "day4 ~ 7（発症5～8日目）" },
+      { id: 0, text: "~ day3" },
+      { id: 1, text: "day4 ~ 7" },
     ],
     next: (answer: number) => {
       if (answer == 0) {
@@ -40,6 +41,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.singleCheck, index: 3 };
       }
     },
+    paxlo: false,
   },
   //index=2
   {
@@ -57,6 +59,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.singleCheck, index: 8 };
       }
     },
+    paxlo: false,
   },
   //index=3
   {
@@ -74,6 +77,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.singleCheck, index: 5 };
       }
     },
+    paxlo: false,
   },
   //index=4
   {
@@ -91,10 +95,11 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.result, index: 3 };
       }
     },
+    paxlo: false,
   },
   //index=5
   {
-    title: "<b>本日の</b>SpO2を確認します(day4-7,moderate~)",
+    title: "<b>本日の</b>SpO2を確認します(day4-7,#)",
     message:
       "<b>手が冷たかったり、マスクをしていると、実際より低い数値になることがあります。</b>マニュキュアやネイルアートをしている場合は、正しく測定できません。",
     choices: [
@@ -108,6 +113,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.result, index: 5 };
       }
     },
+    paxlo: false,
   },
   //index=6
   {
@@ -125,6 +131,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.result, index: 6 };
       }
     },
+    paxlo: false,
   },
   //index=7
   {
@@ -142,10 +149,11 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.result, index: 8 };
       }
     },
+    paxlo: true,
   },
   //index=8
   {
-    title: "<b>本日の</b>SpO2を確認します(day0-3),moderate~",
+    title: "<b>本日の</b>SpO2を確認します(day0-3),#",
     message:
       "<b>手が冷たかったり、マスクをしていると、実際より低い数値になることがあります。</b>マニュキュアやネイルアートをしている場合は、正しく測定できません。",
     choices: [
@@ -159,11 +167,12 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.result, index: 9 };
       }
     },
+    paxlo: false,
   },
   //index=9
   {
     title:
-      "腎機能を、お聞きします。(day0-3,moderate~)<br>3か月以内の腎機能を教えてください。ただし、進行性の腎障害の懸念がなければ、6か月以内の腎機能でかまいません。",
+      "腎機能を、お聞きします。(day0-3,#)<br>3か月以内の腎機能を教えてください。ただし、進行性の腎障害の懸念がなければ、6か月以内の腎機能でかまいません。",
     message: "eGFR≧30 と確認できますか？",
     choices: [
       { id: 0, text: "eGFR≧30と確認できる" },
@@ -176,10 +185,11 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.result, index: 10 };
       }
     },
+    paxlo: false,
   },
   //index=10
   {
-    title: "服薬中のすべての薬について、お聞きします(day0-3,moderate~)",
+    title: "服薬中のすべての薬について、お聞きします(day0-3,#)",
     message:
       "<b>すべて</b>、パキロビッドパックの併用禁忌薬ではないと、確認ができますか？",
     choices: [
@@ -193,6 +203,7 @@ export const singleCheckData: SingleCheck = new SingleCheck([
         return { category: Category.result, index: 12 };
       }
     },
+    paxlo: true,
   },
 ]);
 
@@ -260,58 +271,51 @@ export const resultScreenData: ResultScreen = new ResultScreen([
   //index=0
   {
     title: "ワクチン等の重症化予防効果等を期待し、経過を見てください",
-    message:
-      "ただし、ワクチンや罹患後の重症化予防効果が、現在の流行株にいつまで続くかは、はっきりはわかっていません。<b>day4以後（発症から5日目以後）でも、症状（特に熱や食欲・倦怠感）の改善がない場合は、初期治療薬投与を再検討してください。</b>",
-  },
+    message: "ただし、ワクチンや罹患後の重症化予防効果が、現在の流行株にいつまで続くかは、はっきりはわかっていません。<b>day4以後（発症から5日目以後）でも、症状（特に熱や食欲・倦怠感）の改善がない場合は、初期治療薬投与を再検討してください。</b>",
+    addition: "noPrint"
+    },
   //index=1
   {
     title: "スクリーニングの対象外です",
     message: "リスク因子なし",
+    addition: "noPrint"
   },
   //index=2
   {
     title: "経過観察でよいと考えます",
     message: "ただし、症状悪化しないか、フォローしてください。",
+    addition: "noPrint"
   },
   //index=3
   {
-    title:
-      "直ちに、ゼビュディ（中和抗体療法、点滴）投与を検討してください。<br>代替薬として、ベクルリー（抗ウイルス薬、連日点滴、入院）があります。",
-    message:
-      "<b>ゼビュディはday7以内</b>（発症から8日目まで）、SpO2≧93が必要です。投与が早いほど<b>（特にday5以内）</b>、効果を期待できると考えられています。",
+    title: "直ちに、ゼビュディ（中和抗体療法、点滴）投与を検討してください。<br>代替薬として、ベクルリー（抗ウイルス薬、連日点滴、入院）があります。",
+    message: "<b>ゼビュディはday7以内</b>（発症から8日目まで）、SpO2≧93が必要です。投与が早いほど<b>（特にday5以内）</b>、効果を期待できると考えられています。",
     medicine: "直ちにゼビュディ",
     addition: "ベクルリー",
   },
   //index=4
   {
-    title:
-      "直ちに、ゼビュディ（中和抗体療法、点滴）投与を検討してください。<br>代替薬として、ベクルリー（抗ウイルス薬、連日点滴、入院）があります。",
-    message:
-      "<b>ゼビュディはday7以内</b>（発症から8日目まで）、SpO2≧93が必要です。投与が早いほど<b>（特にday5以内）</b>、効果を期待できると考えられています。",
+    title: "直ちに、ゼビュディ（中和抗体療法、点滴）投与を検討してください。<br>代替薬として、ベクルリー（抗ウイルス薬、連日点滴、入院）があります。",
+    message: "<b>ゼビュディはday7以内</b>（発症から8日目まで）、SpO2≧93が必要です。投与が早いほど<b>（特にday5以内）</b>、効果を期待できると考えられています。",
     medicine: "直ちにゼビュディ",
     addition: "ベクルリー",
   },
   //index=5
   {
-    title:
-      "直ちに入院し、ベクルリー投与（抗ウイルス薬、連日点滴、入院）が必要な可能性があります。",
-    message:
-      "ベクルリーは、SpO2＜93でも投与できます。投与開始が早いほど、効果を期待できると考えられています。しかし、高流量酸素の必要な患者には使用できません。保険適応は、現在中等症１（酸素投与不要のCOVID-19肺炎）。",
+    title: "直ちに入院し、ベクルリー投与（抗ウイルス薬、連日点滴、入院）が必要な可能性があります。",
+    message: "ベクルリーは、SpO2＜93でも投与できます。投与開始が早いほど、効果を期待できると考えられています。しかし、高流量酸素の必要な患者には使用できません。保険適応は、現在中等症１（酸素投与不要のCOVID-19肺炎）。",
     medicine: "直ちに入院しベクルリー",
   },
   //index=6
   {
     title: "ラゲブリオ（内服、1日2回 5日間）を推奨します。",
-    message:
-      "<b>day5</b> 以内（発症から6日目まで）に開始。<br>※カプセルは、長さ21.7㎜、直径7.7㎜、1回分は４カプセル。嚥下障害があると、服薬が難しいかもしれません。<br>※認知症の独居等で、介護者等の毎日の服薬支援がない場合➡介護者付添いの上で、ゼビュディ投与について検討してください。<br>※明らかに症状（熱や食欲・倦怠感）が軽快している場合は、経過観察でよいと考えます。症状悪化しないか、フォローしてください。<br><br>ラゲブリオが投与できない者①18歳未満②妊婦 は別の薬を検討してください。<br>☞パキロビッドパックの適応: day5 以内（発症から6日目まで）に開始、eGFR≧30, 併用禁忌薬がない、SpO2≧93<br>☞ゼビュディの適応: day7以内（発症から7日目まで）に投与、SpO2≧93",
+    message: "<b>day5</b> 以内（発症から6日目まで）に開始。<br>※カプセルは、長さ21.7㎜、直径7.7㎜、1回分は４カプセル。嚥下障害があると、服薬が難しいかもしれません。<br>※認知症の独居等で、介護者等の毎日の服薬支援がない場合➡介護者付添いの上で、ゼビュディ投与について検討してください。<br>※明らかに症状（熱や食欲・倦怠感）が軽快している場合は、経過観察でよいと考えます。症状悪化しないか、フォローしてください。<br><br>ラゲブリオが投与できない者①18歳未満②妊婦 は別の薬を検討してください。<br>☞パキロビッドパックの適応: day5 以内（発症から6日目まで）に開始、eGFR≧30, 併用禁忌薬がない、SpO2≧93<br>☞ゼビュディの適応: day7以内（発症から7日目まで）に投与、SpO2≧93",
     medicine: "ラゲブリオ",
   },
   //index=7
   {
-    title:
-      "パキロビッドパック（内服、1日2回 5日間）を推奨します<br>代替薬として、ゼビュディも検討されます。",
-    message:
-      "<b>day5以内</b>（発症から6日目まで）に服薬開始。開始が早いほど、効果を期待できると考えられています。<br><br>※認知症の独居等で、服薬サポートがない場合は、ゼビュディ投与（介護者付添いの上）について検討してください。<br>※明らかに症状（熱や食欲・倦怠感）が軽快していれば、経過観察でよいと考えます。症状悪化しないか、フォローしてください。<br>※妊婦・授乳婦は有益性投与",
+    title: "パキロビッドパック（内服、1日2回 5日間）を推奨します<br>代替薬として、ゼビュディも検討されます。",
+    message: "<b>day5以内</b>（発症から6日目まで）に服薬開始。開始が早いほど、効果を期待できると考えられています。<br><br>※認知症の独居等で、服薬サポートがない場合は、ゼビュディ投与（介護者付添いの上）について検討してください。<br>※明らかに症状（熱や食欲・倦怠感）が軽快していれば、経過観察でよいと考えます。症状悪化しないか、フォローしてください。<br>※妊婦・授乳婦は有益性投与",
     medicine: "パキロビッドパック",
     addition: "ゼビュディ",
   },

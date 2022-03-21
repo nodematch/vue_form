@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <accordion-version-1 :contents="accordionContent" :headText="headText" />
+    <div class="text-end fs-6">{{ typeName }}</div>
+    <accordion-version-1 :contents="accordionContent" :headText="headText" :color="headColor" />
     <button-component :contents="buttonContent" />
   </div>
 </template>
@@ -18,7 +19,9 @@ export default defineComponent({
     ButtonComponent,
   },
   setup() {
+    const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
     const headText = "<p>STEP 2</p><p>重症化リスク(+) 患者の「COVID-19早期治療薬スクリーニング」</p>";
+    const headColor = "greenB"
     const accordionContent = [
       {
         title: "<b>対象</b>",
@@ -41,19 +44,19 @@ export default defineComponent({
     ];
     const buttonContent = [
       {
-        text: "「早期治療薬スクリーニング」へ進む",
+        text: "スクリーニング開始",
         func: () => {
-          router.push({
-            name: "InputForm2",
-          });
+          router.push({ name: "InputForm2", query: {type: typeName} });
         },
-        color: "btn-success"
+        color: "greenB"
       },
     ];
     return {
       headText,
+      headColor,
       accordionContent,
       buttonContent,
+      typeName,
     };
   },
 });

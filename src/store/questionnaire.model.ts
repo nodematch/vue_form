@@ -6,24 +6,24 @@ export const Category = {
 export type Category = typeof Category[keyof typeof Category];
 
 export class SingleCheck {
-  qs: Array<Single> = [];
-  as: Array<number> = [];
-  constructor(qs: Array<Single>) {
-    this.qs = qs;
-    this.as = new Array<number>(qs.length);
-    for (let i = 0; i < this.as.length; i++) {
-      this.as[i] = -1;
+  qst: Array<Single> = [];
+  ans: Array<number> = [];
+  constructor(qst: Array<Single>) {
+    this.qst = qst;
+    this.ans = new Array<number>(qst.length);
+    for (let i = 0; i < this.ans.length; i++) {
+      this.ans[i] = -1;
     }
   }
 }
 export class MultiCheck {
-  qs: Array<Multi> = [];
-  as: Array<number[]> = [];
-  constructor(qs: Array<Multi>) {
-    this.qs = qs;
-    this.as = new Array<number[]>(qs.length);
-    for (let i = 0; i < this.as.length; i++) {
-      this.as[i] = [];
+  qst: Array<Multi> = [];
+  ans: Array<number[]> = [];
+  constructor(qst: Array<Multi>) {
+    this.qst = qst;
+    this.ans = new Array<number[]>(qst.length);
+    for (let i = 0; i < this.ans.length; i++) {
+      this.ans[i] = [];
     }
   }
 }
@@ -38,6 +38,7 @@ type Single = {
   message: string;
   choices: Array<{ id: number; text: string }>;
   next: (answer: number) => Succession;
+  paxlo: boolean,
 };
 type Multi = {
   title: string;

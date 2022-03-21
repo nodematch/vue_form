@@ -1,6 +1,6 @@
 <template>
   <div class="accordion my-3">
-    <div class="accordion-body blueA fs-5 display-1 fw-normal p-2" v-html="headText"></div>
+    <div v-bind:class="'accordion-body fs-5 display-1 fw-normal p-2 ' + color" v-html="headText"></div>
     <div class="accordion-item" v-for="item in contents" :key="item.idn">
       <h2 class="accordion-header" v-bind:id='item.idn + "parent"'>
         <button class="accordion-button" type="button" data-bs-toggle="collapse" v-bind:data-bs-target='"#" + item.idn + "child"' aria-expanded="true" v-bind:aria-controls='"#" + item.idn + "child"' v-html="item.title"></button>
@@ -26,6 +26,7 @@ export default defineComponent({
   props: {
     contents: Array as PropType<Acc[]>,
     headText: String,
+    color: String,
   },
 })
 </script>

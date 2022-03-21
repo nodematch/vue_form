@@ -1,25 +1,26 @@
 <template>
   <div class="container">
     <div class="text-center py-2 fs-3 redA">早期治療薬のスクリーニング</div>
+    <div class="text-end fs-6">{{ typeName }}</div>
     <!-- SingleSelectQuestion -->
     <div v-if="show.category == 0" class="text-start">
-      <div class="fs-3 p-2 mb-4" v-html="singleQ[show.index].title"></div>
-      <div class="fs-6 p-3" v-html="singleQ[show.index].message"></div>
-      <form  class="form-check fs-6"  v-for="item in singleQ[show.index].choices"  :key="item.text">
-        <input type="radio" name="single" :value="item.id" :id="item.text" v-model="answerSingle[show.index]" class="form-check-input" />
+      <div class="fs-3 p-2 mb-4" v-html="qst.single[show.index].title"></div>
+      <div class="fs-6 p-3" v-html="qst.single[show.index].message"></div>
+      <form  class="form-check fs-6"  v-for="item in qst.single[show.index].choices"  :key="item.text">
+        <input type="radio" name="single" :value="item.id" :id="item.text" v-model="ans.single[show.index]" class="form-check-input" />
         <label :for="item.text" class="form-check-label" v-html="item.text"></label>
       </form>
-      <div v-if="show.index == 7 || show.index == 10" class="mt-6">
+      <button-component :contents="btn0" />
+      <div v-if="qst.single[show.index].paxlo" class="mt-6">
         <medicine-table />
       </div>
-      <button-component :contents="btn0" />
     </div>
     <!-- MultiSelectQuestion -->
     <div v-if="show.category == 1">
-      <div class="fs-3 p-2 mb-4" v-html="multiQ[show.index].title"></div>
-      <div class="fs-6 p-3" v-html="multiQ[show.index].message"></div>
-      <form class="fs-6 form-check" v-for="item in multiQ[show.index].choices" :key="item.text">
-        <input class="form-check-input" type="checkbox" name="multi" :value="item.id" :id="item.text" v-model="answerMulti[show.index]" />
+      <div class="fs-3 p-2 mb-4" v-html="qst.multi[show.index].title"></div>
+      <div class="fs-6 p-3" v-html="qst.multi[show.index].message"></div>
+      <form class="fs-6 form-check" v-for="item in qst.multi[show.index].choices" :key="item.text">
+        <input class="form-check-input" type="checkbox" name="multi" :value="item.id" :id="item.text" v-model="ans.multi[show.index]" />
         <label class="form-check-label" :for="item.text" v-html="item.text"></label>
       </form>
       <button-component :contents="btn0" />
@@ -29,7 +30,7 @@
       <br />
       <div class="fs-3 p-2 mb-4" v-html="resultS[show.index].title"></div>
       <div class="fs-6 p-3" v-html="resultS[show.index].message"></div>
-      <div class="mt-3" v-if="show.index > 2">
+      <div class="mt-3" v-if="resultS[show.index].addition != 'noPrint'">
         <p class="fs-5 text-center">あま市民病院に投薬依頼する場合</p>
         <button-component :contents="btnPrint" />
         <br />
@@ -37,7 +38,7 @@
         <div class="text-center">これで終了です。</div>
         <button-component :contents="btnBackHome" />
       </div>
-      <div class="mt-3" v-if="show.index <= 2">
+      <div class="mt-3"  v-if="resultS[show.index].addition == 'noPrint'">
         <div class="text-center">これで終了です。</div>
         <button-component :contents="btnBackHome" />
       </div>
@@ -53,8 +54,9 @@
 <script lang="ts">
 import router from "@/router";
 import { multiCheckData, resultScreenData, singleCheckData } from "@/store/questionnaire";
+import { multiCheckDataBa, resultScreenDataBa, singleCheckDataBa } from "@/store/questionnaire.ba2";
 import { Category, Succession } from "@/store/questionnaire.model";
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, reactive } from "vue";
 import MedicineTable from "@/components/MedicineTable.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
 
@@ -65,14 +67,14 @@ export default defineComponent({
     ButtonComponent,
   },
   setup() {
-    const singleQ = singleCheckData.qs;
-    const multiQ = multiCheckData.qs;
-    const answerSingle = ref(singleCheckData.as);
-    const answerMulti = ref(multiCheckData.as);
+    const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
+    let omi = typeName == "omicron";
+    const qst = omi ? { single: singleCheckData.qst, multi: multiCheckData.qst } : { single: singleCheckDataBa.qst, multi: multiCheckDataBa.qst }
+    const ans = omi ? reactive({ single: singleCheckData.ans, multi: multiCheckData.ans }) : reactive({ single: singleCheckDataBa.ans, multi: multiCheckDataBa.ans });
     const suc: Succession = { category: Category.singleCheck, index: 0 };
     const show = ref(suc);
     const hist = ref(new Array<Succession>());
-    const resultS = resultScreenData.list;
+    const resultS = omi ? resultScreenData.list : resultScreenDataBa.list;
     const back = () => {
       show.value = hist.value[hist.value.length - 1];
       hist.value.pop();
@@ -82,13 +84,13 @@ export default defineComponent({
       func: () => {
         hist.value.push(show.value);
         if (show.value.category == Category.singleCheck) {
-          if(answerSingle.value[show.value.index] == -1){
+          if(ans.single[show.value.index] == -1){
             alert("no select");
           } else {
-            show.value = singleQ[show.value.index].next(answerSingle.value[show.value.index]);
+            show.value = qst.single[show.value.index].next(ans.single[show.value.index]);
           }
         } else {
-          show.value = multiQ[show.value.index].next(answerMulti.value[show.value.index]);
+          show.value = qst.multi[show.value.index].next(ans.multi[show.value.index]);
         }
       },
       color: "btn-primary fs-4",
@@ -99,22 +101,22 @@ export default defineComponent({
         let light: string[] = [];
         let heavy: string[] = [];
         let heavyOfA = [1, 5, 10, 11, 12, 13, 17];
-        for (let i of answerMulti.value[0]) {
+        for (let i of ans.multi[0]) {
           if (heavyOfA.includes(i)) {
-            heavy.push(multiQ[0].choices[i].text);
+            heavy.push(qst.multi[0].choices[i].text);
           } else {
-            light.push(multiQ[0].choices[i].text);
+            light.push(qst.multi[0].choices[i].text);
           }
         }
-        for (let i of answerMulti.value[1]) {
-          heavy.push(multiQ[1].choices[i].text);
+        for (let i of ans.multi[1]) {
+          heavy.push(qst.multi[1].choices[i].text);
         }
         let rst = resultS[show.value.index];
         router.push({
           name: "PrintView2",
           params: {
             resultNumber: show.value.index,
-            answers: answerSingle.value,
+            answers: ans.single,
             riskL: light,
             riskH: heavy,
             medicine: rst.medicine,
@@ -130,10 +132,8 @@ export default defineComponent({
       color: "btn-warning fs-5"
     }]
     return {
-      answerSingle,
-      answerMulti,
-      singleQ,
-      multiQ,
+      ans,
+      qst,
       show,
       hist,
       resultS,
@@ -141,6 +141,7 @@ export default defineComponent({
       btnPrint,
       btnBackHome,
       back,
+      typeName,
     };
   },
 });
