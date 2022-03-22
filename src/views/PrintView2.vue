@@ -126,7 +126,7 @@
               <td></td>
             </tr>
           </table>
-          <p class="center">スクリーニング推奨薬</p>
+          <p class="center">スクリーニング推奨薬 ({{ typeName }})</p>
           <table class="half lineNormal step-2a" border="1">
             <tr>
               <td class="text-center">{{ medicine }}</td>
@@ -200,6 +200,7 @@ export default defineComponent({
     const rslt = resultList[props.resultNumber];
     return {
       rslt,
+      typeName,
     };
   },
 });

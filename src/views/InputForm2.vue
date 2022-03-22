@@ -68,7 +68,7 @@ export default defineComponent({
   setup() {
     const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
     const qst = questionSet[typeName];
-    const ans = answerSet[typeName];
+    const ans = reactive(answerSet[typeName]);
     const suc: Succession = { category: Category.singleCheck, index: 0 };
     const show = ref(suc);
     const hist = ref(new Array<Succession>());
