@@ -161,7 +161,7 @@
 </template>
 
 <script lang="ts">
-import { resultScreenData } from "@/store/questionnaire";
+import { questionSet } from "@/store/questionnaire.summary";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -195,7 +195,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const rslt = resultScreenData.list[props.resultNumber];
+    const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
+    const resultList = questionSet[typeName].result;
+    const rslt = resultList[props.resultNumber];
     return {
       rslt,
     };

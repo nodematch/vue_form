@@ -28,9 +28,9 @@
     <!-- RESULT MESSAGE -->
     <div v-if="show.category == 2">
       <br />
-      <div class="fs-3 p-2 mb-4" v-html="resultS[show.index].title"></div>
-      <div class="fs-6 p-3" v-html="resultS[show.index].message"></div>
-      <div class="mt-3" v-if="resultS[show.index].addition != 'noPrint'">
+      <div class="fs-3 p-2 mb-4" v-html="qst.result[show.index].title"></div>
+      <div class="fs-6 p-3" v-html="qst.result[show.index].message"></div>
+      <div class="mt-3" v-if="qst.result[show.index].addition != 'noPrint'">
         <p class="fs-5 text-center">あま市民病院に投薬依頼する場合</p>
         <button-component :contents="btnPrint" />
         <br />
@@ -38,7 +38,7 @@
         <div class="text-center">これで終了です。</div>
         <button-component :contents="btnBackHome" />
       </div>
-      <div class="mt-3"  v-if="resultS[show.index].addition == 'noPrint'">
+      <div class="mt-3"  v-if="qst.result[show.index].addition == 'noPrint'">
         <div class="text-center">これで終了です。</div>
         <button-component :contents="btnBackHome" />
       </div>
@@ -53,8 +53,7 @@
 
 <script lang="ts">
 import router from "@/router";
-import { multiCheckData, resultScreenData, singleCheckData } from "@/store/questionnaire";
-import { multiCheckDataBa, resultScreenDataBa, singleCheckDataBa } from "@/store/questionnaire.ba2";
+import { questionSet, answerSet } from "@/store/questionnaire.summary"
 import { Category, Succession } from "@/store/questionnaire.model";
 import { defineComponent, ref, reactive } from "vue";
 import MedicineTable from "@/components/MedicineTable.vue";
@@ -68,13 +67,11 @@ export default defineComponent({
   },
   setup() {
     const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
-    let omi = typeName == "omicron";
-    const qst = omi ? { single: singleCheckData.qst, multi: multiCheckData.qst } : { single: singleCheckDataBa.qst, multi: multiCheckDataBa.qst }
-    const ans = omi ? reactive({ single: singleCheckData.ans, multi: multiCheckData.ans }) : reactive({ single: singleCheckDataBa.ans, multi: multiCheckDataBa.ans });
+    const qst = questionSet[typeName];
+    const ans = answerSet[typeName];
     const suc: Succession = { category: Category.singleCheck, index: 0 };
     const show = ref(suc);
     const hist = ref(new Array<Succession>());
-    const resultS = omi ? resultScreenData.list : resultScreenDataBa.list;
     const back = () => {
       show.value = hist.value[hist.value.length - 1];
       hist.value.pop();
@@ -113,9 +110,10 @@ export default defineComponent({
         for (let i of ans.multi[1]) {
           heavy.push(qst.multi[1].choices[i].text);
         }
-        let rst = resultS[show.value.index];
+        let rst = qst.result[show.value.index];
         router.push({
           name: "PrintView2",
+          query: {type: typeName},
           params: {
             resultNumber: show.value.index,
             answers: ans.single,
@@ -138,7 +136,6 @@ export default defineComponent({
       qst,
       show,
       hist,
-      resultS,
       btn0,
       btnPrint,
       btnBackHome,
