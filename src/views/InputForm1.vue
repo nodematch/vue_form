@@ -16,11 +16,11 @@
       <div class="row p-1 justify-content-center greyA">
         <label class="col-6 col-form-label text-center fs-3">性別</label>
         <div class="form-check col-3">
-          <input class="form-check-input fs-3" type="radio" name="sex" id="female" value="0" v-model="sex" />
+          <input class="form-check-input fs-3" type="radio" name="sex" id="female" value="0" v-model="val.sex" />
           <label class="form-check-label fs-3" for="female">女</label>
         </div>
         <div class="form-check col-3">
-          <input class="form-check-input fs-3" type="radio" name="sex" id="male" value="1" v-model="sex" />
+          <input class="form-check-input fs-3" type="radio" name="sex" id="male" value="1" v-model="val.sex" />
           <label class="form-check-label fs-3" for="male">男</label>
         </div>
       </div>
@@ -28,19 +28,19 @@
       <div class="row p-1 justify-content-center greyA">
         <label for="height" class="col-6 col-form-label text-center fs-3">身長</label>
         <div class="col-6">
-          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="height" max="299" min="0" id="height">
+          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="val.height" max="299" min="0" id="height">
         </div>
       </div>
       <!-- No4 -->
       <div class="row p-1 justify-content-center greyA">
         <label for="weight" class="col-6 col-form-label text-center fs-3">体重</label>
         <div class="col-6">
-          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="weight" max="199" min="0" id="weight">
+          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="val.weight" max="199" min="0" id="weight">
         </div>
       </div>
       <!-- No5- -->
       <div v-for="(item, idx) in risks" :key="item.name">
-        <div class="row p-1 greyB justify-content-center" v-if="item.isShow(ageType)">
+        <div class="row p-1 greyB justify-content-center" v-if="item.isShow(val.ageType)">
           <label class="col-6 col-form-label text-center fs-3">{{ item.name }}</label>
           <div class="form-check col-3">
             <input class="form-check-input fs-3" type="radio" :name="item.name" value="1" :id="'y' + item.name" v-model.number="riskVals[idx]" />
@@ -59,9 +59,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, reactive } from "vue";
 import { Calculation, risks } from "@/store/riskForm1"
-import errCheck from "@/store/errCheck";
 import router from "@/router/index";
 import ButtonComponent from "@/components/ButtonComponent.vue"
 
@@ -72,47 +71,40 @@ export default defineComponent({
   },
   setup() {
     const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
-    const age = ref(0);
-    const sex = ref(0);
-    const height = ref(0);
-    const weight = ref(0);
+    const val = reactive({
+      age: 0,
+      sex: 0,
+      height: 0,
+      weight: 0,
+      ageType: 0,
+      bmi: 0,
+    });
     const riskVals = ref([0,0,0,0,0,0,0,0,0,0]);
-    const ageType = ref(0);
-    const resultMsg = ref("result message here");
-    const setAgeType = () => { ageType.value = Calculation.AgeType(age.value); };
+    const setAgeType = () => { val.ageType = Calculation.AgeType(val.age); };
     const onclick = () => {
-      let chk = errCheck.numbers([
-        { n: age.value, min: 18, max: 150, name: "age" },
-        { n: height.value, min: 1, max: 250, name: "height" },
-        { n: weight.value, min: 1, max: 199, name: "weight" },
-      ]);
-      if (!chk.valid) {
-        resultMsg.value = chk.msg;
-        alert(resultMsg.value);
+      let chk = "";
+      chk = Calculation.checkValue({ n: val.age, min: 18, max: 150, name: "age" });
+      chk = Calculation.checkValue({ n: val.height, min: 1, max: 250, name: "height" });
+      chk = Calculation.checkValue({ n: val.weight, min: 1, max: 199, name: "weight" });
+      if(chk != ""){
+        alert(chk);
       } else {
-        let score = Calculation.Point(risks, {age: age.value, ageType: ageType.value, height: height.value, weight: weight.value, sex: sex.value, riskVals: riskVals.value })
+        val.bmi = Calculation.BMI(val.height, val.weight);
+        let score = Calculation.Point(risks, {age: val.age, ageType: val.ageType, height: val.height, weight: val.weight, sex: val.sex, riskVals: riskVals.value })
         console.log(score);
-        let result;
-        if (!Calculation.judge(ageType.value, score)) {
-          resultMsg.value = "低いスコア(" + score + ") : 次の入力フォームへ進んで下さい";
-          result = window.confirm(resultMsg.value);
-          if (result) {
-            router.push({ name: "TitleInformation2", query: {type: typeName}});
-          }
+        if (!Calculation.judge(val.ageType, score)) {
+          let rst = window.confirm("低いスコア(" + score + ") : 次の入力フォームへ進んで下さい");
+          if (rst) { router.push({ name: "TitleInformation2" }); }
         } else {
-          resultMsg.value = "高いスコア(" + score + ") : 表示されるページの印刷、およびFaxをお願いします";
-          result = window.confirm(resultMsg.value);
-          if (result) {
-            Print(score);
-          }
+          let rst = window.confirm("高いスコア(" + score + ") : 表示されるページの印刷、およびFaxをお願いします");
+          if (rst) { Print(score); }
         }
       }
     };
     const Print = (score: number) => {
-      let sexStr: string = sex.value == 1 ? "男" : "女";
       let risks_: string[] = new Array<string>(riskVals.value.length);
       for (let i = 0; i < risks.length; i++) {
-        if (!risks[i].isShow(ageType.value)) {
+        if (!risks[i].isShow(val.ageType)) {
           risks_[i] = "―";
         } else if (riskVals.value[i] == 1) {
           risks_[i] = "&#9675";
@@ -120,26 +112,17 @@ export default defineComponent({
           risks_[i] = "";
         }
       }
-      let _ageType = "18-39";
-      let _cutoff = 6;
-      if (ageType.value == 1) {
-        _ageType = "40-64";
-        _cutoff = 5;
-      } else if (ageType.value == 2) {
-        _ageType = "65-";
-        _cutoff = 3;
-      }
       router.push({
         name: "PrintView1",
         query: {type: typeName},
         params: {
-          age: age.value,
-          sex: sexStr,
+          age: val.age,
+          sex: Calculation.formatSex(val.sex),
           ills: risks_,
-          bmi:  Math.floor(Calculation.BMI(height.value, weight.value) * 10) / 10,
+          bmi:  Math.floor(val.bmi * 10) / 10,
           score: score.toString(),
-          ageType: _ageType,
-          cutoff: _cutoff,
+          ageType: Calculation.formatAgeType(val.ageType),
+          cutoff: Calculation.formatCutoff(val.ageType),
         },
       });
     };
@@ -150,12 +133,7 @@ export default defineComponent({
     }];
 
     return {
-      age,
-      sex,
-      height,
-      weight,
-      resultMsg,
-      ageType,
+      val,
       riskVals,
       buttonContent,
       setAgeType,

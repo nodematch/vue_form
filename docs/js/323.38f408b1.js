@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunksample0222"]=self["webpackChunksample0222"]||[]).push([[323],{3323:function(n,e,s){s.r(e),s.d(e,{default:function(){return o}});var t=s(3396);const a={class:"container"};function r(n,e,s,r,c,u){return(0,t.wg)(),(0,t.iD)("div",a)}var c=(0,t.aZ)({name:"TestView",components:{}}),u=s(89);const i=(0,u.Z)(c,[["render",r]]);var o=i}}]);
+//# sourceMappingURL=323.38f408b1.js.map

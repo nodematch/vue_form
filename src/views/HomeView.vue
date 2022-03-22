@@ -40,7 +40,6 @@
         <div class="card-body text-center text-dark">
           <div class="text-center fs-4 mb-5">
             <p>BA.2 流行期のフロー</p>
-            <p>準備中</p>
             <p class="fs-6">早期治療：ラゲブリオ、パキロビッドパック、ベクルリー</p>
             <p class="text-end fs-6"></p>
           </div>
@@ -57,12 +56,5 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "HomeView",
-  setup() {
-    // if (location.search == "?id=printv2") {
-    //   router.push({
-    //     name: "PrintBu2",
-    //   });
-    // }
-  },
 });
 </script>

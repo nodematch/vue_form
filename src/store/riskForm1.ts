@@ -85,6 +85,17 @@ export const Calculation = {
     }
     return result;
   },
+  formatSex(sex: number) { return sex == 1 ? "男" : "女";},
+  formatAgeType(ageType: number) {
+    if (ageType == 0) { return "18-39";}
+    else if(ageType == 1) { return "40-64"; }
+    else { return "65-"; }
+  },
+  formatCutoff(ageType: number) {
+    if (ageType == 0) { return 6;}
+    else if(ageType == 1) { return 5; }
+    else { return 3; }
+  },
 };
 
 export const risks: RiskData1[] = [

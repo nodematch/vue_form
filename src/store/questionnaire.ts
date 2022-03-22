@@ -261,6 +261,7 @@ export const multiCheckData: MultiCheck = new MultiCheck([
         text: "60代男性プラスアルファ（HT、 HL、治療を要するDM、喫煙、BMI≧25）",
       },
     ],
+    // eslint-disable-next-line 
     next: (answer: number[]) => {
       return { category: Category.singleCheck, index: 1 };
     },

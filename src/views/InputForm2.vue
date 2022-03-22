@@ -78,6 +78,7 @@ export default defineComponent({
     const back = () => {
       show.value = hist.value[hist.value.length - 1];
       hist.value.pop();
+      window.scrollTo(0,0);
     };
     const btn0 = [{
       text: "進む",
@@ -92,6 +93,7 @@ export default defineComponent({
         } else {
           show.value = qst.multi[show.value.index].next(ans.multi[show.value.index]);
         }
+        window.scrollTo(0,0);
       },
       color: "btn-primary fs-4",
     }];
