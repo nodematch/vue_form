@@ -1,4 +1,5 @@
 <template>
+  <help-input @evT="infs = $event" @evD="date = $event" @evAll="date = $event.dateArray; infs = $event.textArray"/>
   <div class="page">
     <!-- Head -->
     <div class="fontTitle center">コロナ重症化リスク患者 紹介FAX</div>
@@ -13,23 +14,32 @@
           <b class="fontL">太字枠を記入 </b>
         </td>
         <td class="box right">
-          &emsp;&emsp;&emsp;&emsp;年&emsp;&emsp;&emsp;&emsp;月&emsp;&emsp;&emsp;&emsp;日
+          <table>
+            <tr class="yymmdd">
+              <td>{{ date[0] }}</td>
+              <td>年</td>
+              <td>{{ date[1] }}</td>
+              <td>月</td>
+              <td>{{ date[2] }}</td>
+              <td>日</td>
+            </tr>
+          </table>
         </td>
       </tr>
     </table>
     <!-- INPUT_1 -->
     <table class="lineThick wide" border="1">
       <tr>
-        <td rowspan="2">医療機関名称</td>
+        <td rowspan="2">医療機関名称&emsp;{{ infs[0] }}</td>
         <td rowspan="2">
-          <p>TEL</p>
-          <p>FAX</p>
+          <p>TEL&emsp;{{ infs[3] }}</p>
+          <p>FAX&emsp;{{ infs[4] }}</p>
         </td>
       </tr>
       <tr></tr>
       <tr>
-        <td>担当医師名</td>
-        <td>所在地</td>
+        <td>担当医師名&emsp;{{ infs[1] }}</td>
+        <td>所在地&emsp;{{ infs[2] }}</td>
       </tr>
     </table>
     <!-- INPUT_2 -->
@@ -162,10 +172,14 @@
 
 <script lang="ts">
 import { questionSet } from "@/store/questionnaire.summary";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import HelpInput from "@/components/HelpInput.vue";
 
 export default defineComponent({
   name: "PrintView2",
+  components: {
+    HelpInput,
+  },
   props: {
     resultNumber: {
       type: Number,
@@ -198,9 +212,14 @@ export default defineComponent({
     const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
     const resultList = questionSet[typeName].result;
     const rslt = resultList[props.resultNumber];
+    const infs = ref(["","","","",""]);
+    const date = ref(["", "", ""]);
+
     return {
       rslt,
       typeName,
+      infs,
+      date,
     };
   },
 });
@@ -208,4 +227,8 @@ export default defineComponent({
 
 <style scoped>
 @import "@/css/print_1024px";
+tr.yymmdd td {
+  width: 45px;
+  text-align: right;
+}
 </style>

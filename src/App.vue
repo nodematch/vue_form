@@ -23,4 +23,9 @@ export default defineComponent({
   margin: 0mm;
   padding: 0mm;
 }
+@media print{
+  .noprint {
+    display: none;
+  }
+}
 </style>

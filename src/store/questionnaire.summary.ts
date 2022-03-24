@@ -1,5 +1,4 @@
 import { singleDataOmi } from "./questionnaire.omi.single";
-import { singleDataBa2 } from "./questionnaire.ba2.single";
 import { multiData } from "./questionnaire.multi";
 import { resultDataOmi } from "./questionnaire.omi.result";
 import { resultDataBa2 } from "./questionnaire.ba2.result";

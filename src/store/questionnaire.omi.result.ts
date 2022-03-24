@@ -1,4 +1,4 @@
-import { Category, ResultScreen } from "./questionnaire.model";
+import { ResultScreen } from "./questionnaire.model";
 
 // RESULT
 export const resultDataOmi: ResultScreen = new ResultScreen([
