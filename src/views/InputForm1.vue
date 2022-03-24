@@ -9,7 +9,7 @@
       <div class="row p-1 justify-content-center greyA">
         <label for="age" class="col-6 col-form-label text-center fs-3">年齢</label>
         <div class="col-6">
-          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="age" @change="setAgeType"  max="150"  min="18" id="age" />
+          <input type="number" class="form-control fs-3" maxlength="3" v-model.number="val.age" @change="setAgeType"  max="150"  min="18" id="age" />
         </div>
       </div>
       <!-- No2 -->
@@ -80,7 +80,10 @@ export default defineComponent({
       bmi: 0,
     });
     const riskVals = ref([0,0,0,0,0,0,0,0,0,0]);
-    const setAgeType = () => { val.ageType = Calculation.AgeType(val.age); };
+    const setAgeType = () => { 
+      // console.log(Calculation.AgeType(val.age));
+      val.ageType = Calculation.AgeType(val.age); 
+    };
     const onclick = () => {
       let chk = "";
       chk = Calculation.checkValue({ n: val.age, min: 18, max: 150, name: "age" });
