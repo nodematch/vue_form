@@ -53,7 +53,7 @@ import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: "HelpInput",
   setup(){
-    const textValue = ref("記入例クリニック\n記入 太郎\n記入例町\n000-00-0000\n111-11-1111");
+    const textValue = ref("(例) 〇〇医院\n(例) 梅屋　崇\n(例) あま市\n(例) 000-00-0000\n(例) 111-11-1111");
     const checkValue = ref(false)
     const textArray = ref(["", "", "", "", ""]);
     const checkDate = ref(false);

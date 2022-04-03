@@ -10,6 +10,9 @@
           <li>
             <router-link to="/" class="dropdown-item" id="toTop">Top</router-link>
           </li>
+          <li>
+            <router-link to="/toiasase" class="dropdown-item" id="toTop">意見・不具合等報告</router-link>
+          </li>
         </ul>
       </div>
     </div>

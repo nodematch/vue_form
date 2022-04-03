@@ -2,10 +2,19 @@
   <div class="container">
     <div class="text-end fs-6">{{ typeName }}</div>
     <accordion-version-1 :contents="accordionContent" :headText="headText" :color="headColor"/>
-    <div class="fs-6"><b>対象患者（18才以上 かつ day3～7）:</b></div>
-    <button-component :contents="btn0" />
-    <div class="fs-6 mt-4">対象以外の患者（ただし、day0~7 かつ 12歳以上）:</div>
-    <button-component :contents="btn1" />
+    <div class="card">
+      <div class="card-body">
+        <p class="card-title">・対象患者（<b class="fs-5">day3～7</b> かつ 18才以上）</p>
+        <button-component :contents="btn0" />
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <p class="card-title">・<b class="fs-5">対象以外</b>の患者（ただし、day0~7 かつ 12歳以上）</p>
+        <button-component :contents="btn1" />
+      </div>
+    </div>
+    <div class="fs-6 mt-4"></div>
   </div>
 </template>
 

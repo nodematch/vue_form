@@ -31,19 +31,23 @@
       <div class="card p-1 m-1 bg-light">
         <div class="card-body text-center text-dark">
           <div class="text-center fs-4 mb-5">
-            <p>オミクロン流行期のフロー</p>
+            <p>BA.2 流行期のフロー</p>
+            <p class="fs-6">早期治療：ラゲブリオ、パキロビッドパック、ベクルリー</p>
+            <p class="fs-6">2022年4月1日~</p>
+            <p class="text-end fs-6"></p>
           </div>
-          <router-link class="btn btn-primary fs-5" to="/titleinformation1?type=omicron">スクリーニングを開始する</router-link>
+          <router-link class="btn btn-primary fs-5" to="/titleinformation1?type=ba2">スクリーニングを開始する</router-link>
         </div>
       </div>
       <div class="card p-1 m-1 bg-light">
         <div class="card-body text-center text-dark">
           <div class="text-center fs-4 mb-5">
-            <p>BA.2 流行期のフロー</p>
-            <p class="fs-6">早期治療：ラゲブリオ、パキロビッドパック、ベクルリー</p>
-            <p class="text-end fs-6"></p>
+            <p>オミクロン流行期のフロー</p>
           </div>
-          <router-link class="btn btn-primary fs-5" to="/titleinformation1?type=ba2">スクリーニングを開始する</router-link>
+          <router-link class="btn btn-primary fs-5 disabled" to="/titleinformation1?type=omicron">
+            <p><s>スクリーニングを開始する</s></p>
+            <p>終了しました</p>
+          </router-link>
         </div>
       </div>
     </div>
