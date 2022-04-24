@@ -11,6 +11,7 @@ import router from "@/router";
 import { defineComponent } from "vue";
 import AccordionVersion1 from "../components/AccordionVersion1.vue"
 import ButtonComponent from "../components/ButtonComponent.vue";
+import { NameOfType } from "@/store/questionnaire.summary";
 
 export default defineComponent({
   name: "TitleInformation2",
@@ -19,7 +20,7 @@ export default defineComponent({
     ButtonComponent,
   },
   setup() {
-    const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
+    const typeName = NameOfType(location.search);
     const headText = "<p>STEP 2</p><p>重症化リスク(+) 患者の「COVID-19早期治療薬スクリーニング」</p>";
     const headColor = "greenB"
     const accordionContent = [

@@ -11,3 +11,14 @@ export const answerSet = {
   "omicron": { single: singleDataOmi.ans, multi: multiData.ans },
   "ba2": { single: singleDataBa2.ans, multi: multiData.ans },
 }
+export const NameOfType = (locationSearch: string): "ba2"|"omicron" => {
+  if (locationSearch ==  "?type=ba2"){
+    return "ba2"
+  }else if(locationSearch ==  "?type=omicron"){
+    window.location.href = "https://nodematch.github.io/404.html"
+    return "omicron"
+  }else {
+    window.location.href = "https://nodematch.github.io/404.html"
+    return "ba2"
+  }
+}

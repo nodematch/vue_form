@@ -171,7 +171,7 @@
 </template>
 
 <script lang="ts">
-import { questionSet } from "@/store/questionnaire.summary";
+import { questionSet, NameOfType } from "@/store/questionnaire.summary";
 import { defineComponent, ref } from "vue";
 import HelpInput from "@/components/HelpInput.vue";
 
@@ -209,7 +209,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
+    const typeName = NameOfType(location.search);
     const resultList = questionSet[typeName].result;
     const rslt = resultList[props.resultNumber];
     const infs = ref(["","","","",""]);

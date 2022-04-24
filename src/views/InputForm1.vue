@@ -63,6 +63,7 @@ import { defineComponent, ref, reactive } from "vue";
 import { Calculation, risks } from "@/store/riskForm1"
 import router from "@/router/index";
 import ButtonComponent from "@/components/ButtonComponent.vue"
+import { NameOfType } from "@/store/questionnaire.summary"
 
 export default defineComponent({
   name: "InputForm1",
@@ -70,7 +71,7 @@ export default defineComponent({
     ButtonComponent,
   },
   setup() {
-    const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
+    const typeName = NameOfType(location.search);
     const val = reactive({
       age: 0,
       sex: 0,

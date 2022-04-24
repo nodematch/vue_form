@@ -51,10 +51,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/ToiawaseView.vue"),
   },
   {
-    path: "/:catchAll(.*)",
-    name: "NotFound",
-    component: () => import("../views/NotFound.vue"),
-  },
+    path: "/printinput",
+    name: "PrintInput",
+    component: () => import("../views/PrintInput.vue"),
+  }
 ];
 
 

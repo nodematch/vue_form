@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import router from "@/router";
-import { questionSet, answerSet } from "@/store/questionnaire.summary"
+import { questionSet, answerSet, NameOfType } from "@/store/questionnaire.summary"
 import { Category, Succession } from "@/store/questionnaire.model";
 import { defineComponent, ref, reactive } from "vue";
 import MedicineTable from "@/components/MedicineTable.vue";
@@ -66,7 +66,7 @@ export default defineComponent({
     ButtonComponent,
   },
   setup() {
-    const typeName = location.search == "?type=ba2" ? "ba2" : "omicron";
+    const typeName = NameOfType(location.search);
     const qst = questionSet[typeName];
     const ans = reactive(answerSet[typeName]);
     const suc: Succession = { category: Category.singleCheck, index: 0 };
