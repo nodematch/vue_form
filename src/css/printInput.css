@@ -1,0 +1,148 @@
+@page {
+  size: A4 portrait;
+  margin: 0mm;
+  padding: 0mm;
+}
+* {
+  margin: 0mm;
+  padding: 0mm;
+  border-collapse: collapse;
+  border-color: black;
+}
+.page {
+  margin: 0 auto;
+  padding: 0mm;
+  page-break-after: avoid;
+  box-sizing: border-box;
+  /* ver,hor */
+  padding: 50px 55px;
+  width: 1024px;
+  height: 1400px;
+  background-color: rgb(235, 235, 235);
+}
+@media print{
+  .noprint {
+    display: none;
+  }
+}
+.noprint {
+  background-color: yellow;
+}
+.headermanual {
+  padding: 10px;
+  padding-bottom: 20px;
+}
+body {
+  font-size: 16px;
+  width: 880px;
+  height: 1280px;
+  padding: 0mm;
+  margin: 0px;
+}
+table.thishead {
+  border: 0px none;
+  table-layout: fixed;
+  width: 100%;
+  margin: 5px auto;
+  padding: 0mm;
+}
+table.thishead tr:nth-child(1) td {
+  height: 2px;
+}
+table.thishead td:nth-child(1) {
+  width: 70%;
+  height: 30px;
+}
+table.thishead td:nth-child(2) {
+  width:10%;
+  height: 30px;
+}
+table.thishead td:nth-child(3) {
+  width:20%;
+  height: 30px;
+}
+.row_2 {
+  height: 120px;
+}
+.row_3 {
+  height: 180px;
+}
+.row_4 {
+  height: 240px;
+}
+.row_5 {
+  height: 300px;
+}
+.inputSpace {
+  border:solid 0px;
+  font-size: 18px;
+  line-height: 30px;
+}
+.sel1 {
+  border-radius:20px / 20px;
+  border: black solid 0px;
+  cursor: pointer;
+}
+.sel2 {
+  border-radius:40px / 20px;
+  border: black solid 0px;
+  cursor: pointer;
+}
+.sel3 {
+  border-radius:30px / 20px;
+  border: black solid 0px;
+  cursor: pointer;
+}
+
+/* Height */
+.heightL {
+  height: 50px !important;
+}
+.heightM {
+  height: 40px !important;
+}
+.heightS {
+  height: 25px !important;
+}
+/* Text-Align */
+.left {
+  text-align: left !important;
+  text-indent: 1.5mm;
+}
+.center {
+  text-align: center !important;
+}
+.right {
+  text-align: right !important;
+}
+/* Font-Size */
+.fontL {
+  font-size: 21px !important;
+}
+.fontS {
+  font-size: 12px !important;
+}
+.fontTitle {
+  font-size: 24px !important;
+}
+
+table.wide {
+  table-layout: fixed;
+  margin: 1px auto;
+  padding: 10px;
+  border: black solid 1px;
+}
+table.wide tr{
+  height: 40px;
+}
+table.wide td {
+  text-align: left;
+  text-indent: 5px;
+  border-width: 2px;
+}
+table.step-2a td:nth-child(odd){
+  width: 20%;
+}
+table.step-2a td:nth-child(even){
+  width: 80%;
+}

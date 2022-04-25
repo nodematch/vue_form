@@ -4,7 +4,7 @@
     <accordion-version-1 :contents="accordionContent" :headText="headText" :color="headColor"/>
     <div class="card">
       <div class="card-body">
-        <p class="card-title">・対象患者（<b class="fs-5">day3～7</b> かつ 18才以上）</p>
+        <p class="card-title">・対象患者（<b class="fs-5">day3～7</b> かつ 18才以上 かつ 症状の軽快が乏しい患者）</p>
         <button-component :contents="btn0" />
       </div>
     </div>
@@ -38,7 +38,7 @@ export default defineComponent({
     const accordionContent = [
       {
         title: "対象",
-        msg: "18才以上 かつ day3～7の外来患者 (発症日はday0）",
+        msg: "18才以上 かつ day3～7の外来患者 (発症日はday0） かつ 症状の軽快が乏しい患者",
         isShow: "show",
         idn:"aa",
       },

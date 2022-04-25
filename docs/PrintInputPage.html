@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>診療状況提供書</title>
+  <link rel="stylesheet" type="text/css" href="../src/css/printInput.css" />  
+</head>
+<body>
+  <div class="page">
+    <div class="noprint headermanual">
+      <p>印刷して、FAX用紙として送付願います。パソコン上の記入も一部を除き可能です（データは保存されません）</p>
+      <p class="right">あま市民病院ICT</p>
+    </div>
+    <!-- Head -->
+    <div class="right">あま市民病院&emsp;TEL : 052-444-2252</div>
+    <div class="right">FAX: 052-462-0655</div>
+    <div class="fontTitle center heightL">【FAX】診療情報提供書</div>
+    <div class="left fontL">宛先&emsp;あま市民病院 休日当番医先生</div>
+    <table class="thishead" border="0">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td rowspan="4"></td>
+        <td colspan="2">海部医師会急病診療所</td>
+      </tr>
+      <tr>
+        <td>担当医師</td>
+        <td><input type="text" class="inputSpace" size="15"></td>
+      </tr>
+      <tr>
+        <td>TEL</td>
+        <td>0567-25-5210</td>
+      </tr>
+      <tr>
+        <td>FAX</td>
+        <td></td>
+      </tr>
+    </table>
+    <br />
+    <table class="wide step-2a" border="1">
+      <tr class="heightL">
+        <td>患者氏名（カタカナ）</td>
+        <td>
+          <div class="noprint">印刷後、用紙に記入してください</div>
+          <!-- <input type="text" class="inputSpace" size="40"> -->
+        </td>
+      </tr>
+      <tr class="heightL">
+        <td>生年月日</td>
+        <td>
+          <div class="noprint">印刷後、用紙に記入してください</div>
+          <!-- <input type="text" class="inputSpace" size="40"> -->
+        </td>
+      </tr>
+      <tr class="heightL">
+        <td>性別</td>
+        <td><span class="sel1" onclick="select(event)" id="male">&nbsp;男&nbsp;</span>・<span class="sel1" onclick="select(event)" id="female">&nbsp;女&nbsp;</span></td>
+      </tr>
+      <tr class="heightL">
+        <td>住所（市町村）</td>
+        <td>
+          <span class="sel2" onclick="select(event)" id="a">あま市</span> ・ 
+          <span class="sel2" onclick="select(event)" id="b">大治町</span> ・ 
+          <span class="sel2" onclick="select(event)" id="c">蟹江町</span> ・ 
+          <span class="sel2" onclick="select(event)" id="d">津島市</span> ・ 
+          <span class="sel2" onclick="select(event)" id="e">弥富町</span> ・ 
+          <span class="sel2" onclick="select(event)" id="f">愛西市</span> ・ 
+          <span class="sel2" onclick="select(event)" id="g">飛島村</span> ・ 
+          <span class="sel2" onclick="select(event)" id="h">その他</span>
+        </td>
+      </tr>
+      <tr class="heightL">
+        <td>患者連絡先（電話）</td>
+        <td>
+          <div class="noprint">印刷後、用紙に記入してください</div>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(
+          <span class="sel3" id="him"  onclick="select(event)">本人</span> ・ <span class="sel3" id="fam"  onclick="select(event)">その他</span>
+          )
+          </td>
+        <!-- <td><span><input type="text" class="inputSpace" size="50"></span>&emsp;(<span class="sel3" id="him"  onclick="select(event)">本人</span> ・ <span class="sel3" id="fam"  onclick="select(event)">その他</span>)</td> -->
+      </tr>
+      <tr>
+        <td>診断名</td>
+        <td class="row_2"><textarea class="inputSpace" rows="3" cols="67"></textarea></td>
+      </tr>
+      <tr>
+        <td>既往歴</td>
+        <td class="row_3"><textarea class="inputSpace" rows="4" cols="67"></textarea></td>
+      </tr>
+      <tr>
+        <td>紹介目的</td>
+        <td class="row_2"><textarea class="inputSpace" rows="3" cols="67"></textarea></td>
+      </tr>
+      <tr>
+        <td>臨床症状・経過</td>
+        <td class="row_5"><textarea class="inputSpace" rows="9" cols="67"></textarea></td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+
+
+<script>
+const select = (ev) => {
+  console.log(ev)
+  let target = ev.target
+  console.log(target.id)
+  let others;
+  if (target.id == "male"){
+    others = ["female"]
+  }else if (target.id == "female"){
+    others = ["male"]
+  }
+  else if (target.id == "him"){
+    others = ["fam"]
+  }
+  else if (target.id == "fam"){
+    others = ["him"]
+  } else {
+    others = ["a", "b", "c", "d", "e", "f", "g", "h"]
+    others = others.filter(element => element != target.id);
+  }
+  for (let item of others) {
+    let span = document.getElementById(item)
+    if(span){
+      span.style.borderWidth = "0px";
+      target.style.borderWidth = "2px"
+    }
+  }
+}
+</script>

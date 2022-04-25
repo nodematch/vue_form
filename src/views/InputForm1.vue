@@ -98,7 +98,7 @@ export default defineComponent({
         console.log(score);
         if (!Calculation.judge(val.ageType, score)) {
           let rst = window.confirm("低いスコア(" + score + ") : 次の入力フォームへ進んで下さい");
-          if (rst) { router.push({ name: "TitleInformation2" }); }
+          if (rst) { router.push({ name: "TitleInformation2", query: {type: typeName} }); }
         } else {
           let rst = window.confirm("高いスコア(" + score + ") : 表示されるページの印刷、およびFaxをお願いします");
           if (rst) { Print(score); }

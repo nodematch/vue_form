@@ -55,16 +55,14 @@
 </template>
 
 <script lang="ts">
-// import router from "@/router";
-import router from "@/router";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "HomeView",
-  setup(){
-    if(location.search == "?printinput=true"){
-      router.push({name: "PrintInput"})
-    }
-  }
+  // setup(){
+  //   if(location.search == "?printinput=true"){
+  //     router.push({name: "PrintInput"})
+  //   }
+  // }
 });
 </script>

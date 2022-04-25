@@ -50,11 +50,6 @@ const routes: Array<RouteRecordRaw> = [
     name: "ToiawaswView",
     component: () => import("../views/ToiawaseView.vue"),
   },
-  {
-    path: "/printinput",
-    name: "PrintInput",
-    component: () => import("../views/PrintInput.vue"),
-  }
 ];
 
 
