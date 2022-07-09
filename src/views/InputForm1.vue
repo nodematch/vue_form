@@ -3,7 +3,7 @@
     <div class="text-center m-3 fs-2">COVID-19 酸素需要予測のスクリーニング</div>
     <div class="text-end fs-6">{{ typeName }}</div>
     <div class="text-center m-3 fs-6"><b>day3-7</b>(発症日はday0）かつ 18才以上</div>
-    <div class="text-center m-3 fs-6">STEP1 入力フォーム</div>
+    <div class="text-center m-3 fs-6">Step A 入力フォーム</div>
     <form>
       <!-- No1 -->
       <div class="row p-1 justify-content-center greyA">

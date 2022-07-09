@@ -8,9 +8,21 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
+    path: "/titleinformation0",
+    name: "TitleInformation0",
+    props: false,
+    component: () => import("../views/TitleInformation0.vue"),
+  },
+  {
     path: "/titleinformation1",
     name: "TitleInformation1",
     component: () => import("../views/TitleInformation1.vue"),
+  },
+  {
+    path: "/titleinformation2",
+    name: "TitleInformation2",
+    props: false,
+    component: () => import("../views/TitleInformation2.vue"),
   },
   {
     path: "/inputform2",
@@ -33,12 +45,6 @@ const routes: Array<RouteRecordRaw> = [
     name: "PrintView2",
     props: true,
     component: () => import("../views/PrintView2.vue"),
-  },
-  {
-    path: "/titleinformation2",
-    name: "TitleInformation2",
-    props: false,
-    component: () => import("../views/TitleInformation2.vue"),
   },
   {
     path: "/testview",

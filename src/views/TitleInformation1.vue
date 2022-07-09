@@ -2,18 +2,7 @@
   <div class="container">
     <div class="text-end fs-6">{{ typeName }}</div>
     <accordion-version-1 :contents="accordionContent" :headText="headText" :color="headColor"/>
-    <div class="card">
-      <div class="card-body">
-        <p class="card-title">・対象患者（<b class="fs-5">day3～7</b> かつ 18才以上 かつ 症状の軽快が乏しい患者）</p>
-        <button-component :contents="btn0" />
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <p class="card-title">・<b class="fs-5">対象以外</b>の患者（ただし、day0~7 かつ 12歳以上）</p>
-        <button-component :contents="btn1" />
-      </div>
-    </div>
+    <button-component :contents="buttonContent" />
     <div class="fs-6 mt-4"></div>
   </div>
 </template>
@@ -33,7 +22,7 @@ export default defineComponent({
   },
   setup() {
     const typeName = NameOfType(location.search);
-    const headText = "<p>STEP1</p><p>COVID-19「 酸素需要予測のスクリーニング」</p>"
+    const headText = "<p>Step A</p><p>COVID-19「 酸素需要予測のスクリーニング」</p>"
     const headColor = "blueA";
     const accordionContent = [
       {
@@ -55,31 +44,21 @@ export default defineComponent({
         idn: "cc",
       },
     ];
-    const btn0 = [
+    const buttonContent = [
       {
-        text: "「酸素需要予測スクリーニング（STEP1）」へ進む",
+        text: "スクリーニング開始",
         func: () => {
           router.push({ name: "InputForm1", query: {type: typeName} });
         },
         color: "blueA",
       },
     ];
-    const btn1 = [
-      {
-        text: "「早期治療薬スクリーニング（STEP2）」へ進む",
-        func: () => {
-          router.push({ name: "TitleInformation2", query: {type: typeName} });
-        },
-        color: "greenB"
-      },
-    ]
     return {
       accordionContent,
       headText,
       headColor,
-      btn0,
-      btn1,
       typeName,
+      buttonContent
     };
   },
 });

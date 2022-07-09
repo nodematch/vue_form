@@ -21,7 +21,7 @@ export default defineComponent({
   },
   setup() {
     const typeName = NameOfType(location.search);
-    const headText = "<p>STEP 2</p><p>重症化リスク(+) 患者の「COVID-19早期治療薬スクリーニング」</p>";
+    const headText = "<p>Step B</p><p>重症化リスク(+) 患者の「COVID-19早期治療薬スクリーニング」</p>";
     const headColor = "greenB"
     const accordionContent = [
       {
