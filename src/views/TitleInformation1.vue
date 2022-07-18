@@ -27,7 +27,7 @@ export default defineComponent({
     const accordionContent = [
       {
         title: "対象",
-        msg: "18才以上 かつ day3～7の外来患者 (発症日はday0） かつ 症状の軽快が乏しい患者",
+        msg: "18才以上 かつ day3～6の外来患者 (発症日はday0） かつ 症状の軽快が乏しい患者",
         isShow: "show",
         idn:"aa",
       },

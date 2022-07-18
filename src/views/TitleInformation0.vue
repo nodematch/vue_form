@@ -10,7 +10,7 @@
     </div>
     <div class="card">
       <div class="card-body">
-        <p class="card-title">・<b class="fs-5">day3～7</b>の患者（18歳以上）</p>
+        <p class="card-title">・<b class="fs-5">day3～6</b>の患者（18歳以上）</p>
         <button-component :contents="btn0" />
       </div>
     </div>

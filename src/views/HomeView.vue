@@ -8,7 +8,7 @@
           <div class="card-body text-center text-dark">
             <div class="fs-4 text-center"><b>対象（下記をすべて満たす）</b></div>
             <div class="fs-6 text-center text-danger fw-bold">・18才以上 または 12~17才でBW≧40kg</div>
-            <div class="fs-6 text-center text-danger fw-bold">・day0~7の外来患者</div>
+            <div class="fs-6 text-center text-danger fw-bold">・day0~6の外来患者</div>
             <div class="fs-6 text-center mt-3">日数の数え方</div>
             <table class="table table-bordered fs-6">
               <tr class="table-info">
