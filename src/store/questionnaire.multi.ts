@@ -7,7 +7,7 @@ export const multiData: MultiCheck = new MultiCheck([
     message:
       "あてはまる因子を、すべて選んでください。(ない場合はそのまま進んで下さい)<br> * は特に重い因子",
     choices: [
-      { id: 0, text: "60歳以上" },
+      { id: 0, text: "65歳以上" },
       { id: 1, text: "COPD, ステロイド吸入を要するBA *" },
       { id: 2, text: "CKD" },
       { id: 3, text: "治療が必要な糖尿病" },
