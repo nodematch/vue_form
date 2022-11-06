@@ -1,7 +1,7 @@
 import {  Category, SingleCheck } from "./questionnaire.model";
 
 // SINGLE
-export const singleDataBa5: SingleCheck = new SingleCheck([
+export const singleDataba275: SingleCheck = new SingleCheck([
   // index=0
   {
     title:
@@ -31,7 +31,7 @@ export const singleDataBa5: SingleCheck = new SingleCheck([
     ],
     next: (answer: number) => {
       if (answer == 0) {
-        return { category: Category.singleCheck, index: 2 };
+        return { category: Category.singleCheck, index: 14 };
       } else {
         return { category: Category.singleCheck, index: 3 };
       }
@@ -210,7 +210,7 @@ export const singleDataBa5: SingleCheck = new SingleCheck([
     ],
     next: (answer: number) => {
       if (answer == 0) {
-        return { category: Category.singleCheck, index: 12 };
+        return { category: Category.singleCheck, index: 15 };
       } else {
         return { category: Category.result, index: 7 };
       }
@@ -252,5 +252,41 @@ export const singleDataBa5: SingleCheck = new SingleCheck([
       }
     },
     paxlo: true,
+  },
+  //index=14
+  {
+    title: "患者の予想される内服のアドヒアランスについて、お聞きします(~day3)",
+    message:
+      "5日間の内服継続は、<b>大変難しい</b>でしょうか？",
+    choices: [
+      { id: 0, text: "難しくはない" },
+      { id: 1, text: "大変難しい" },
+    ],
+    next: (answer: number) => {
+      if (answer == 0) {
+        return { category: Category.singleCheck, index: 2 };
+      } else {
+        return { category: Category.result, index: 8 };
+      }
+    },
+    paxlo: false,
+  },
+  //index=15
+  {
+    title: "患者の予想される内服のアドヒアランスについて、お聞きします(day4)",
+    message:
+      "5日間の内服継続は、<b>大変難しい</b>でしょうか？",
+    choices: [
+      { id: 0, text: "難しくはない" },
+      { id: 1, text: "大変難しい" },
+    ],
+    next: (answer: number) => {
+      if (answer == 0) {
+        return { category: Category.singleCheck, index: 12 };
+      } else {
+        return { category: Category.result, index: 8 };
+      }
+    },
+    paxlo: false,
   },
 ]);

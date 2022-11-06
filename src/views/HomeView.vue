@@ -64,6 +64,16 @@
           </router-link>
         </div>
       </div>
+      <!-- <div class="card p-1 m-1 bg-light">
+        <div class="card-body text-center text-dark">
+          <div class="text-center fs-4 mb-5">
+            <p>BA.2.75流行期のフロー（試験用）</p>
+          </div>
+          <router-link class="btn btn-primary fs-5" to="/titleinformation0?type=ba275">
+            <p>スクリーニングを開始する</p>
+          </router-link>
+        </div>
+      </div> -->
     </div>
   </div>
 </template>
